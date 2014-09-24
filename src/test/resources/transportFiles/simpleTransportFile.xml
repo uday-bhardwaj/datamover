@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Transport>
+    <Element>
+        <Field1>TestValue</Field1>
+        <Field2>AnotherTestValue</Field2>
+        <RefElement>
+            <NewField>NewValue</NewField>
+        </RefElement>
+        <LinkedElement>
+            <LinkedField>LinkedValue</LinkedField>
+        </LinkedElement>
+    </Element>
+</Transport>
