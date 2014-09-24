@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Directory>
+    <Person>
+        <CodeName>JD</CodeName>
+        <FirstName>John</FirstName>
+        <LastName>Doe</LastName>
+        <Pet>
+            <CodeName>Skippy</CodeName>
+            <Type>Dog</Type>
+        </Pet>
+        <Phone>
+            <PhoneNumber>NewValue</PhoneNumber>
+        </Phone>
+    </Person>
+</Directory>
