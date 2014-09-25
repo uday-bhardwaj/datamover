@@ -2,6 +2,8 @@ package com.arekusu.datamover.dao;
 
 import com.arekusu.datamover.model.Entity;
 import com.arekusu.datamover.model.Field;
+import com.arekusu.datamover.model.jaxb.EntityType;
+import com.arekusu.datamover.model.jaxb.FieldType;
 import com.google.common.base.Function;
 import com.google.common.base.Joiner;
 import com.google.common.collect.Lists;
@@ -9,9 +11,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 public class SimpleDBDAO {
@@ -37,4 +43,27 @@ public class SimpleDBDAO {
     }
 
 
+    public List<Entity> readSimpleEntity(final EntityType entityType) {
+        List<String> columns = new ArrayList<String>();
+        for (FieldType fieldType : entityType.getFieldsType().getFieldType()){
+            columns.add(fieldType.getColumn());
+        }
+        String table = entityType.getFieldsType().getSchema() + "." + entityType.getFieldsType().getTable();
+        List<Entity> entities = jdbcTemplate.query("SELECT " + Joiner.on(",").join(columns) + " FROM " + table + ";", new RowMapper<Entity>() {
+            @Override
+            public Entity mapRow(ResultSet rs, int rowNum) throws SQLException {
+                Entity entity = new Entity();
+                entity.setType(entityType);
+                for (FieldType fieldType : entityType.getFieldsType().getFieldType()) {
+                    Field field = new Field();
+                    field.setType(fieldType);
+                    field.setValue(rs.getString(fieldType.getColumn()));
+                    entity.getFields().add(field);
+                }
+                return entity;
+            }
+        });
+
+        return entities;
+    }
 }

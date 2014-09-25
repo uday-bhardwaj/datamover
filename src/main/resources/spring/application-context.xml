@@ -19,5 +19,7 @@
     </bean>
 
     <bean id="fileReader" class="com.arekusu.datamover.reader.XMLTransportFileReader" />
+    <bean id="entityReader" class="com.arekusu.datamover.reader.DBEntityReader" />
+    <bean id="entityWriter" class="com.arekusu.datamover.writer.XMLFileEntityWriter" />
     <bean id="writer" class="com.arekusu.datamover.writer.DBEntityWriter" />
 </beans>
