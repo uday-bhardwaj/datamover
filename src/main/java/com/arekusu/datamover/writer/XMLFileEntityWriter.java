@@ -2,7 +2,7 @@ package com.arekusu.datamover.writer;
 
 import com.arekusu.datamover.model.Entity;
 import com.arekusu.datamover.model.Field;
-import com.sun.xml.internal.txw2.output.IndentingXMLStreamWriter;
+import com.sun.xml.txw2.output.IndentingXMLStreamWriter;
 
 import javax.xml.stream.XMLOutputFactory;
 import javax.xml.stream.XMLStreamException;
