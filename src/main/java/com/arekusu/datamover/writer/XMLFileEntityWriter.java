@@ -15,38 +15,13 @@ public class XMLFileEntityWriter {
 
     public static final String DOCUMENT_ROOT_NODE_NAME = "Data";
 
-    public static final String XML_DECLARATION = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>";
-
-    public static final String DOCUMENT_ROOT_START_ELEMENT = "<"
-            + DOCUMENT_ROOT_NODE_NAME + ">";
-
-    public static final String DOCUMENT_ROOT_START_ELEMENT_NOT_CLOSED = "<"
-            + DOCUMENT_ROOT_NODE_NAME;
-
-    public static final String DOCUMENT_ROOT_END_ELEMENT = "</"
-            + DOCUMENT_ROOT_NODE_NAME + ">";
-
-    public static final String VERSION_ATTRIBUTE = "version";
-
-    public static final String LINE_BREAK = System.getProperty(
-            "line.separator", "\n");
-
-    public static final String ENTITY_FILE_EXTENSION = ".xml";
-
-    public static final String ENTITY_FILE_EXTENSION_UPCASE = ENTITY_FILE_EXTENSION
-            .toUpperCase();
-
-
     private static final XMLOutputFactory outputFactory = XMLOutputFactory.newInstance();
 
-    public void writeEntities(List<Entity> entities) {
-        String filePath = "out.xml";
-
+    public void writeEntities(List<Entity> entities, File outputFile) {
         IndentingXMLStreamWriter eventWriter = null;
         FileOutputStream fos = null;
         try {
-            File file = new File(filePath);
-            fos = new FileOutputStream(filePath);
+            fos = new FileOutputStream(outputFile);
             eventWriter = new IndentingXMLStreamWriter(
                     outputFactory.createXMLStreamWriter(fos, "UTF-8"));
             eventWriter.writeStartDocument("UTF-8", "1.0");

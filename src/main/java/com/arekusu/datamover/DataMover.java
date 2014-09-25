@@ -7,8 +7,9 @@ import com.arekusu.datamover.reader.EntityReader;
 import com.arekusu.datamover.reader.TransportFileReader;
 import com.arekusu.datamover.writer.EntityWriter;
 import com.arekusu.datamover.writer.XMLFileEntityWriter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Component;
@@ -22,6 +23,8 @@ import java.util.List;
 @Component
 public class DataMover {
 
+    private static Logger logger = LoggerFactory.getLogger(DataMover.class);
+
     @Autowired
     private TransportFileReader fileReader;
 
@@ -34,21 +37,29 @@ public class DataMover {
     @Autowired
     private XMLFileEntityWriter entityWriter;
 
-    @Value("classpath:testTransportFile.xml")
-    private File transportFile;
-
-    @Value("classpath:testModel.xml")
-    private File simpleModel;
-
     public static void main(String[] args) throws JAXBException {
         ApplicationContext ctx = new ClassPathXmlApplicationContext("/spring/application-context.xml");
         DataMover dm = ctx.getBean(DataMover.class);
-        dm.start();
+        dm.start(args);
     }
 
-    public void start() throws JAXBException {
-        exportFile(new File("out.xml"), simpleModel);
-        //importFile(transportFile, simpleModel);
+    public void start(String[] args) throws JAXBException {
+        if (args.length == 3){
+            if (args[0].equals("export")){
+                File modelFile = new File(args[1]);
+                File outputFile = new File(args[2]);
+                exportFile(outputFile, modelFile);
+            } else if (args[0].equals("import")){
+                File modelFile = new File(args[1]);
+                File inputFile = new File(args[2]);
+                importFile(inputFile, modelFile);
+            }
+        } else {
+            logger.error("Incorrect command!!");
+            logger.error("Usage: export <modelFile> <outputFile>");
+            logger.error("Usage: import <modelFile> <inputFile>");
+        }
+
     }
 
     public void importFile(File transportFile, File model) throws JAXBException {
@@ -66,6 +77,6 @@ public class DataMover {
         ModelType modelType = (ModelType) unmarshaller.unmarshal(model);
 
         List<Entity> entities = entityReader.readEntities(modelType.getDefinitionType().getEntityType());
-        entityWriter.writeEntities(entities);
+        entityWriter.writeEntities(entities, outputFile);
     }
 }
