@@ -35,6 +35,6 @@ dependencies {
     compile group: 'com.h2database', name: 'h2'
     compile group: 'org.apache.commons', name: 'commons-dbcp2'
     compile group: 'com.google.guava', name: 'guava'
-    compile group: 'com.sun.xml.bind', name: 'jaxb-impl', version:'2.2.4'
+    compile group: 'com.sun.xml.bind', name: 'jaxb-impl', version: '2.2.4'
 
 }

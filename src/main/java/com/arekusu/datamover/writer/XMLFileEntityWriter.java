@@ -58,13 +58,13 @@ public class XMLFileEntityWriter {
 
     private void writeEntity(Entity entity, IndentingXMLStreamWriter eventWriter) throws XMLStreamException {
         createStartNode(eventWriter, entity.getType().getAlias());
-        for(Field field : entity.getFields()){
-            createNode(eventWriter, field.getType().getAlias(), field.getValue().toString(), false);
+        for (Field field : entity.getFields()) {
+            createNode(eventWriter, field.getType().getAlias(), field.getValue(), false);
         }
-        for (Entity en : entity.getLinkedEntities()){
+        for (Entity en : entity.getLinkedEntities()) {
             writeEntity(en, eventWriter);
         }
-        for (Entity en : entity.getRefEntities()){
+        for (Entity en : entity.getRefEntities()) {
             writeEntity(en, eventWriter);
         }
         createEndNode(eventWriter);
@@ -74,7 +74,7 @@ public class XMLFileEntityWriter {
     public static void createNode(IndentingXMLStreamWriter eventWriter,
                                   String name, String value, boolean isCdata) throws XMLStreamException {
         createStartNode(eventWriter, name);
-        if (isCdata){
+        if (isCdata) {
             eventWriter.writeCData(value);
         } else {
             eventWriter.writeCharacters(value);

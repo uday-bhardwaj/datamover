@@ -36,10 +36,8 @@ public class XMLTransportFileReader implements TransportFileReader {
         try {
             DocumentBuilderFactory domFactory = DocumentBuilderFactory.newInstance();
             domFactory.setNamespaceAware(true);
-            DocumentBuilder builder = null;
-            org.w3c.dom.Document doc = null;
-            builder = domFactory.newDocumentBuilder();
-            return doc = builder.parse(transportFile);
+            DocumentBuilder builder = domFactory.newDocumentBuilder();
+            return builder.parse(transportFile);
         } catch (ParserConfigurationException e) {
             throw new FileReaderException("Error while configuring parser", e);
         } catch (SAXException e) {
@@ -50,7 +48,7 @@ public class XMLTransportFileReader implements TransportFileReader {
     }
 
     private Entity fillEntity(Node node, EntityType entityType) {
-        Entity entity =  new Entity();
+        Entity entity = new Entity();
         entity.setType(entityType);
 
         NodeList nodeList = node.getChildNodes();
@@ -60,8 +58,8 @@ public class XMLTransportFileReader implements TransportFileReader {
                 continue;
             }
             Node nodeItem = nodeList.item(i);
-            for (FieldType fieldType : entityType.getFieldsType().getFieldType()){
-                if (fieldType.getAlias().equals(nodeItem.getNodeName())){
+            for (FieldType fieldType : entityType.getFieldsType().getFieldType()) {
+                if (fieldType.getAlias().equals(nodeItem.getNodeName())) {
                     Field field = new Field();
                     field.setType(fieldType);
                     field.setValue(nodeItem.getTextContent().trim());
@@ -70,15 +68,15 @@ public class XMLTransportFileReader implements TransportFileReader {
                 }
             }
 
-            for (EntityType refEntityType : entityType.getReferencesType().getEntityType()){
-                if (refEntityType.getAlias().equals(nodeItem.getNodeName())){
+            for (EntityType refEntityType : entityType.getReferencesType().getEntityType()) {
+                if (refEntityType.getAlias().equals(nodeItem.getNodeName())) {
                     entity.getRefEntities().add(fillEntity(nodeItem, refEntityType));
                     continue mainCycle;
                 }
             }
 
-            for (EntityType linkEntityType : entityType.getLinksType().getEntityType()){
-                if (linkEntityType.getAlias().equals(nodeItem.getNodeName())){
+            for (EntityType linkEntityType : entityType.getLinksType().getEntityType()) {
+                if (linkEntityType.getAlias().equals(nodeItem.getNodeName())) {
                     entity.getLinkedEntities().add(fillEntity(nodeItem, linkEntityType));
                     continue mainCycle;
                 }

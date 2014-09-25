@@ -20,13 +20,14 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-public class SimpleDBDAO {
+public class SimpleDBDAO implements EntityDAO {
 
     @Autowired
     JdbcTemplate jdbcTemplate;
 
     Logger logger = LoggerFactory.getLogger(SimpleDBDAO.class);
 
+    @Override
     public void insertSimpleEntity(Entity entity) {
         Map<String, String> queryPairMap = new LinkedHashMap<String, String>();
         for (Field field : entity.getFields()) {
@@ -35,17 +36,18 @@ public class SimpleDBDAO {
         String table = entity.getType().getFieldsType().getSchema() + "." + entity.getType().getFieldsType().getTable();
         jdbcTemplate.update(
                 "INSERT INTO " + table + "(" + Joiner.on(",").join(queryPairMap.keySet()) + ") VALUES (" + Joiner.on(",").join(Lists.transform(new ArrayList<String>(queryPairMap.values()), new Function<String, String>() {
-            @Override
-            public String apply(String input) {
-                return "?";
-            }
-        })) + ");", queryPairMap.values().toArray());
+                    @Override
+                    public String apply(String input) {
+                        return "?";
+                    }
+                })) + ");", queryPairMap.values().toArray());
     }
 
 
+    @Override
     public List<Entity> readSimpleEntity(final EntityType entityType) {
         List<String> columns = new ArrayList<String>();
-        for (FieldType fieldType : entityType.getFieldsType().getFieldType()){
+        for (FieldType fieldType : entityType.getFieldsType().getFieldType()) {
             columns.add(fieldType.getColumn());
         }
         String table = entityType.getFieldsType().getSchema() + "." + entityType.getFieldsType().getTable();

@@ -5,7 +5,8 @@
 
     <bean class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close" id="dataSource">
         <property name="driverClassName" value="org.h2.Driver"/>
-        <property name="url" value="jdbc:h2:file:D:/work/DataMoverDB/MoverDB;INIT=RUNSCRIPT FROM 'classpath:dbinit.sql'"/>
+        <property name="url"
+                  value="jdbc:h2:file:D:/work/DataMoverDB/MoverDB;INIT=RUNSCRIPT FROM 'classpath:dbinit.sql'"/>
     </bean>
 
 </beans>

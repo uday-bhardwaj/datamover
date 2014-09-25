@@ -17,7 +17,7 @@ public class DBEntityReaderTest {
     EntityReader reader;
 
     @Test
-    public void readSimpleEntityTest(){
+    public void readSimpleEntityTest() {
         List<Entity> entity = reader.readEntities(null);
     }
 }

@@ -4,10 +4,10 @@
        xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <import resource="spring-jdbc-context.xml" />
+    <import resource="spring-jdbc-context.xml"/>
 
-    <context:annotation-config />
-    <context:component-scan base-package="com.arekusu.datamover" />
+    <context:annotation-config/>
+    <context:component-scan base-package="com.arekusu.datamover"/>
 
     <bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor"/>
 
@@ -18,8 +18,9 @@
     <bean id="simpleDBDAO" class="com.arekusu.datamover.dao.SimpleDBDAO">
     </bean>
 
-    <bean id="fileReader" class="com.arekusu.datamover.reader.XMLTransportFileReader" />
-    <bean id="entityReader" class="com.arekusu.datamover.reader.DBEntityReader" />
-    <bean id="entityWriter" class="com.arekusu.datamover.writer.XMLFileEntityWriter" />
-    <bean id="writer" class="com.arekusu.datamover.writer.DBEntityWriter" />
+    <bean id="modelReader" class="com.arekusu.datamover.model.XMLFileModelReader"/>
+    <bean id="fileReader" class="com.arekusu.datamover.reader.XMLTransportFileReader"/>
+    <bean id="entityReader" class="com.arekusu.datamover.reader.DBEntityReader"/>
+    <bean id="entityWriter" class="com.arekusu.datamover.writer.XMLFileEntityWriter"/>
+    <bean id="writer" class="com.arekusu.datamover.writer.DBEntityWriter"/>
 </beans>

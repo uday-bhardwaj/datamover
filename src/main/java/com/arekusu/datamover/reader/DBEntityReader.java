@@ -1,6 +1,6 @@
 package com.arekusu.datamover.reader;
 
-import com.arekusu.datamover.dao.SimpleDBDAO;
+import com.arekusu.datamover.dao.EntityDAO;
 import com.arekusu.datamover.model.Entity;
 import com.arekusu.datamover.model.jaxb.EntityType;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +10,7 @@ import java.util.List;
 public class DBEntityReader implements EntityReader {
 
     @Autowired
-    private SimpleDBDAO dao;
+    private EntityDAO dao;
 
     @Override
     public List<Entity> readEntities(EntityType entityType) {
@@ -18,10 +18,10 @@ public class DBEntityReader implements EntityReader {
 
         if (entities != null) {
             for (Entity en : entities) {
-                if (entityType.getLinksType() != null){
+                if (entityType.getLinksType() != null) {
                     fillEntity(en.getLinkedEntities(), entityType.getLinksType().getEntityType());
                 }
-                if (entityType.getReferencesType() != null){
+                if (entityType.getReferencesType() != null) {
                     fillEntity(en.getRefEntities(), entityType.getReferencesType().getEntityType());
                 }
             }
@@ -31,7 +31,7 @@ public class DBEntityReader implements EntityReader {
     }
 
     private void fillEntity(List<Entity> entities, List<EntityType> entityType) {
-        for(EntityType en: entityType){
+        for (EntityType en : entityType) {
             entities.addAll(readEntities(en));
         }
     }

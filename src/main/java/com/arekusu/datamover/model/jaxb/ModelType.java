@@ -1,19 +1,13 @@
-
 package com.arekusu.datamover.model.jaxb;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.*;
 
 
 /**
  * <p>Java class for anonymous complex type.
- * 
+ * <p/>
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ * <p/>
  * <pre>
  * &lt;complexType>
  *   &lt;complexContent>
@@ -26,12 +20,10 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "definitionType"
+        "definitionType"
 })
 @XmlRootElement(name = "ModelType", namespace = "http://www.arekusu.com")
 public class ModelType {
@@ -43,11 +35,9 @@ public class ModelType {
 
     /**
      * Gets the value of the definitionType property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link DefinitionType }
-     *     
+     *
+     * @return possible object is
+     * {@link DefinitionType }
      */
     public DefinitionType getDefinitionType() {
         return definitionType;
@@ -55,11 +45,9 @@ public class ModelType {
 
     /**
      * Sets the value of the definitionType property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link DefinitionType }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link DefinitionType }
      */
     public void setDefinitionType(DefinitionType value) {
         this.definitionType = value;
@@ -67,11 +55,9 @@ public class ModelType {
 
     /**
      * Gets the value of the version property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getVersion() {
         return version;
@@ -79,11 +65,9 @@ public class ModelType {
 
     /**
      * Sets the value of the version property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setVersion(String value) {
         this.version = value;

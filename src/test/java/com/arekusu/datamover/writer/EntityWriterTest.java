@@ -1,6 +1,6 @@
 package com.arekusu.datamover.writer;
 
-import com.arekusu.datamover.dao.SimpleDBDAO;
+import com.arekusu.datamover.dao.EntityDAO;
 import com.arekusu.datamover.model.Entity;
 import com.arekusu.datamover.model.Field;
 import com.arekusu.datamover.model.jaxb.EntityType;
@@ -28,7 +28,7 @@ public class EntityWriterTest {
     EntityWriter writer;
 
     @Autowired
-    SimpleDBDAO dao;
+    EntityDAO dao;
 
     @Test
     public void simpleWriteTest() throws JAXBException {

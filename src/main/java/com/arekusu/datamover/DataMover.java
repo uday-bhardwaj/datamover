@@ -1,8 +1,7 @@
 package com.arekusu.datamover;
 
 import com.arekusu.datamover.model.Entity;
-import com.arekusu.datamover.model.jaxb.ModelType;
-import com.arekusu.datamover.model.jaxb.ObjectFactory;
+import com.arekusu.datamover.model.XMLFileModelReader;
 import com.arekusu.datamover.reader.EntityReader;
 import com.arekusu.datamover.reader.TransportFileReader;
 import com.arekusu.datamover.writer.EntityWriter;
@@ -14,9 +13,6 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Component;
 
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Unmarshaller;
 import java.io.File;
 import java.util.List;
 
@@ -24,6 +20,9 @@ import java.util.List;
 public class DataMover {
 
     private static Logger logger = LoggerFactory.getLogger(DataMover.class);
+
+    @Autowired
+    private XMLFileModelReader modelReader;
 
     @Autowired
     private TransportFileReader fileReader;
@@ -37,19 +36,19 @@ public class DataMover {
     @Autowired
     private XMLFileEntityWriter entityWriter;
 
-    public static void main(String[] args) throws JAXBException {
+    public static void main(String[] args) {
         ApplicationContext ctx = new ClassPathXmlApplicationContext("/spring/application-context.xml");
         DataMover dm = ctx.getBean(DataMover.class);
         dm.start(args);
     }
 
-    public void start(String[] args) throws JAXBException {
-        if (args.length == 3){
-            if (args[0].equals("export")){
+    public void start(String[] args) {
+        if (args.length == 3) {
+            if (args[0].equals("export")) {
                 File modelFile = new File(args[1]);
                 File outputFile = new File(args[2]);
                 exportFile(outputFile, modelFile);
-            } else if (args[0].equals("import")){
+            } else if (args[0].equals("import")) {
                 File modelFile = new File(args[1]);
                 File inputFile = new File(args[2]);
                 importFile(inputFile, modelFile);
@@ -62,21 +61,13 @@ public class DataMover {
 
     }
 
-    public void importFile(File transportFile, File model) throws JAXBException {
-        JAXBContext context = JAXBContext.newInstance(ObjectFactory.class);
-        Unmarshaller unmarshaller = context.createUnmarshaller();
-        ModelType modelType = (ModelType) unmarshaller.unmarshal(model);
-
-        Entity entity = fileReader.read(transportFile, modelType);
+    public void importFile(File transportFile, File model) {
+        Entity entity = fileReader.read(transportFile, modelReader.readModel(model));
         writer.write(entity);
     }
 
-    public void exportFile(File outputFile, File model) throws JAXBException {
-        JAXBContext context = JAXBContext.newInstance(ObjectFactory.class);
-        Unmarshaller unmarshaller = context.createUnmarshaller();
-        ModelType modelType = (ModelType) unmarshaller.unmarshal(model);
-
-        List<Entity> entities = entityReader.readEntities(modelType.getDefinitionType().getEntityType());
+    public void exportFile(File outputFile, File model) {
+        List<Entity> entities = entityReader.readEntities(modelReader.readModel(model).getDefinitionType().getEntityType());
         entityWriter.writeEntities(entities, outputFile);
     }
 }

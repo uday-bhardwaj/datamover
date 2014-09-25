@@ -21,13 +21,13 @@ import static org.mockito.Mockito.when;
 public class SimpleDBDAOTest {
 
     @Autowired
-    SimpleDBDAO dao;
+    EntityDAO dao;
 
     @Autowired
     JdbcTemplate jdbcTemplate;
 
     @Test
-    public void insertSimpleEntityTest(){
+    public void insertSimpleEntityTest() {
         when(jdbcTemplate.update(any(String.class), any(String[].class))).thenReturn(1);
         EntityType entityType = new EntityType();
         FieldsType fieldsType = new FieldsType();
@@ -53,6 +53,6 @@ public class SimpleDBDAOTest {
         entity.getFields().add(field1);
         entity.getFields().add(field2);
         dao.insertSimpleEntity(entity);
-        verify(jdbcTemplate).update("INSERT INTO PUBLIC.TestTable1(TestColumn1,TestColumn2) VALUES (?,?);", new String[] {"TestValue1", "TestValue2"});
+        verify(jdbcTemplate).update("INSERT INTO PUBLIC.TestTable1(TestColumn1,TestColumn2) VALUES (?,?);", new String[]{"TestValue1", "TestValue2"});
     }
 }
