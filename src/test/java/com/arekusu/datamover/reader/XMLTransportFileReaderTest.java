@@ -5,6 +5,7 @@ import com.arekusu.datamover.model.Entity;
 import com.arekusu.datamover.model.Field;
 import com.arekusu.datamover.model.jaxb.ModelType;
 import com.arekusu.datamover.model.jaxb.ObjectFactory;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,7 @@ import java.io.File;
 import static com.shazam.shazamcrest.MatcherAssert.assertThat;
 import static com.shazam.shazamcrest.matcher.Matchers.sameBeanAs;
 
+@Ignore
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "classpath:spring/readerTest.xml")
 public class XMLTransportFileReaderTest {
