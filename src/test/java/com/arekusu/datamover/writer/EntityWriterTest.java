@@ -2,10 +2,8 @@ package com.arekusu.datamover.writer;
 
 import com.arekusu.datamover.dao.EntityDAO;
 import com.arekusu.datamover.model.Entity;
-import com.arekusu.datamover.model.Field;
-import com.arekusu.datamover.model.jaxb.EntityType;
-import com.arekusu.datamover.model.jaxb.FieldType;
-import org.junit.Ignore;
+import com.arekusu.datamover.test.util.EntityBuilder;
+import com.arekusu.datamover.test.util.FieldBuilder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.ArgumentCaptor;
@@ -13,13 +11,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import javax.xml.bind.JAXBException;
+import java.util.Arrays;
 
 import static com.shazam.shazamcrest.MatcherAssert.assertThat;
 import static com.shazam.shazamcrest.matcher.Matchers.sameBeanAs;
 import static org.mockito.Mockito.*;
 
-@Ignore
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "classpath:spring/writerTest.xml")
 public class EntityWriterTest {
@@ -31,56 +28,34 @@ public class EntityWriterTest {
     EntityDAO dao;
 
     @Test
-    public void simpleWriteTest() throws JAXBException {
-        FieldType fieldType = new FieldType();
-        fieldType.setAlias("Test");
-        Field field1 = new Field();
-        field1.setType(fieldType);
-        field1.setValue("Test");
+    public void simpleWriteTest() {
+        Entity linkedEntity = new EntityBuilder()
+                .withAlias("LinkedEntity")
+                .withSourceField("Src")
+                .withDestinationField("Dest")
+                .withField(new FieldBuilder().withAlias("Src").withColumn("SrcColumn").withValue("SrcValue").build())
+                .build();
 
-        EntityType linkedEntType = new EntityType();
-        linkedEntType.setAlias("LinkedEntity");
-        linkedEntType.setSourceField("Src");
-        linkedEntType.setDestinationField("Dest");
-        FieldType linkedFieldType = new FieldType();
-        linkedFieldType.setAlias("Src");
-        Field linkedField = new Field();
-        linkedField.setType(linkedFieldType);
-        linkedField.setValue("LinkedFieldValue");
-        Entity linkedEntity = new Entity();
-        linkedEntity.setType(linkedEntType);
-        linkedEntity.getFields().add(linkedField);
+        Entity refEntity = new EntityBuilder()
+                .withAlias("RefEntity")
+                .withSourceField("Src")
+                .withDestinationField("Dest")
+                .withField(new FieldBuilder().withAlias("Dest").withColumn("DestColumn").withValue("DestValue").build())
+                .build();
 
-        EntityType refEntType = new EntityType();
-        refEntType.setAlias("RefEntity");
-        refEntType.setSourceField("Test");
-        refEntType.setDestinationField("Dest");
-        FieldType refFieldType = new FieldType();
-        refFieldType.setAlias("Dest");
-        Field refField = new Field();
-        refField.setType(refFieldType);
-        refField.setValue("RefFieldValue");
-        Entity refEntity = new Entity();
-        refEntity.setType(refEntType);
-        refEntity.getFields().add(refField);
+        Entity entity = new EntityBuilder()
+                .withAlias("TestEntity")
+                .withSchema("TestSchema")
+                .withTable("TestTable")
+                .withField(new FieldBuilder().withAlias("Src").withColumn("TestColumn1").withValue("TestValue1").build())
+                .withField(new FieldBuilder().withAlias("TestAlias2").withColumn("TestColumn2").withValue("TestValue2").build())
+                .withLinkedEntity(linkedEntity)
+                .withReferencedEntity(refEntity)
+                .build();
 
-        EntityType entityType = new EntityType();
-        entityType.setAlias("MainEntity");
-        Entity en = new Entity();
-        en.getFields().add(field1);
-        en.getLinkedEntities().add(linkedEntity);
-        en.getRefEntities().add(refEntity);
+        Entity reference = new EntityBuilder(entity).build();
 
-        Field refField2 = new Field();
-        refField2.setValue("LinkedFieldValue");
-
-        Entity reference = new Entity();
-        reference.getFields().add(field1);
-        reference.getFields().add(refField2);
-        reference.getLinkedEntities().add(linkedEntity);
-        reference.getRefEntities().add(refEntity);
-
-        //writer.write(en);
+        writer.write(Arrays.asList(entity));
 
         ArgumentCaptor<Entity> entityCaptor = ArgumentCaptor.forClass(Entity.class);
         verify(dao, times(3)).insertSimpleEntity(entityCaptor.capture());

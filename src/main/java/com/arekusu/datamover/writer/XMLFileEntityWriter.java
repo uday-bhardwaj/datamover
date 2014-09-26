@@ -2,6 +2,7 @@ package com.arekusu.datamover.writer;
 
 import com.arekusu.datamover.model.Entity;
 import com.arekusu.datamover.model.Field;
+import com.arekusu.datamover.model.jaxb.ModelType;
 import com.sun.xml.txw2.output.IndentingXMLStreamWriter;
 
 import javax.xml.stream.XMLOutputFactory;
@@ -13,11 +14,9 @@ import java.util.List;
 
 public class XMLFileEntityWriter {
 
-    public static final String DOCUMENT_ROOT_NODE_NAME = "Data";
-
     private static final XMLOutputFactory outputFactory = XMLOutputFactory.newInstance();
 
-    public void writeEntities(List<Entity> entities, File outputFile) {
+    public void writeEntities(List<Entity> entities, ModelType model, File outputFile) {
         IndentingXMLStreamWriter eventWriter = null;
         FileOutputStream fos = null;
         try {
@@ -25,7 +24,7 @@ public class XMLFileEntityWriter {
             eventWriter = new IndentingXMLStreamWriter(
                     outputFactory.createXMLStreamWriter(fos, "UTF-8"));
             eventWriter.writeStartDocument("UTF-8", "1.0");
-            eventWriter.writeStartElement(DOCUMENT_ROOT_NODE_NAME);
+            eventWriter.writeStartElement(model.getDefinitionType().getRootElement());
             for (Entity entity : entities) {
                 writeEntity(entity, eventWriter);
             }

@@ -1,10 +1,8 @@
 package com.arekusu.datamover.dao;
 
 import com.arekusu.datamover.model.Entity;
-import com.arekusu.datamover.model.Field;
-import com.arekusu.datamover.model.jaxb.EntityType;
-import com.arekusu.datamover.model.jaxb.FieldType;
-import com.arekusu.datamover.model.jaxb.FieldsType;
+import com.arekusu.datamover.test.util.EntityBuilder;
+import com.arekusu.datamover.test.util.FieldBuilder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,30 +27,16 @@ public class SimpleDBDAOTest {
     @Test
     public void insertSimpleEntityTest() {
         when(jdbcTemplate.update(any(String.class), any(String[].class))).thenReturn(1);
-        EntityType entityType = new EntityType();
-        FieldsType fieldsType = new FieldsType();
-        fieldsType.setSchema("PUBLIC");
-        fieldsType.setTable("TestTable1");
-        entityType.setFieldsType(fieldsType);
-        Entity entity = new Entity();
-        entity.setType(entityType);
-        FieldType fieldType1 = new FieldType();
-        fieldType1.setAlias("TestAlias1");
-        fieldType1.setColumn("TestColumn1");
-        Field field1 = new Field();
-        field1.setType(fieldType1);
-        field1.setValue("TestValue1");
 
-        FieldType fieldType2 = new FieldType();
-        fieldType2.setAlias("TestAlias2");
-        fieldType2.setColumn("TestColumn2");
-        Field field2 = new Field();
-        field2.setType(fieldType2);
-        field2.setValue("TestValue2");
+        Entity entity = new EntityBuilder()
+                .withAlias("TestEntity")
+                .withSchema("TestSchema")
+                .withTable("TestTable")
+                .withField(new FieldBuilder().withAlias("TestAlias1").withColumn("TestColumn1").withValue("TestValue1").build())
+                .withField(new FieldBuilder().withAlias("TestAlias2").withColumn("TestColumn2").withValue("TestValue2").build())
+                .build();
 
-        entity.getFields().add(field1);
-        entity.getFields().add(field2);
         dao.insertSimpleEntity(entity);
-        verify(jdbcTemplate).update("INSERT INTO PUBLIC.TestTable1(TestColumn1,TestColumn2) VALUES (?,?);", new String[]{"TestValue1", "TestValue2"});
+        verify(jdbcTemplate).update("INSERT INTO TestSchema.TestTable(TestColumn1,TestColumn2) VALUES (?,?);", new String[]{"TestValue1", "TestValue2"});
     }
 }

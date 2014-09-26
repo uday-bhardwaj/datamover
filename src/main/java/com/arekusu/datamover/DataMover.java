@@ -2,6 +2,7 @@ package com.arekusu.datamover;
 
 import com.arekusu.datamover.model.Entity;
 import com.arekusu.datamover.model.XMLFileModelReader;
+import com.arekusu.datamover.model.jaxb.ModelType;
 import com.arekusu.datamover.reader.EntityReader;
 import com.arekusu.datamover.reader.TransportFileReader;
 import com.arekusu.datamover.writer.EntityWriter;
@@ -67,7 +68,8 @@ public class DataMover {
     }
 
     public void exportFile(File outputFile, File model) {
-        List<Entity> entities = entityReader.readEntities(modelReader.readModel(model).getDefinitionType().getEntityType());
-        entityFileWriter.writeEntities(entities, outputFile);
+        ModelType modelType = modelReader.readModel(model);
+        List<Entity> entities = entityReader.readEntities(modelType.getDefinitionType().getEntityType());
+        entityFileWriter.writeEntities(entities, modelType, outputFile);
     }
 }

@@ -4,6 +4,7 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <bean id="writer" class="com.arekusu.datamover.writer.DBEntityWriter"/>
+
     <bean id="mockDAO" class="org.mockito.Mockito" factory-method="mock">
         <constructor-arg name="classToMock" value="com.arekusu.datamover.dao.SimpleDBDAO"/>
     </bean>

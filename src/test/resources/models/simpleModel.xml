@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ModelType version="1.0" xmlns="http://www.arekusu.com"
-        >
+<ModelType version="1.0" xmlns="http://www.arekusu.com">
     <DefinitionType rootElement="Transport">
         <EntityType alias="Element">
             <FieldsType schema="TestSchema" table="TestTable">
@@ -10,7 +9,7 @@
             <ReferencesType>
                 <EntityType alias="RefElement" sourceField="" destinationField="">
                     <FieldsType>
-                        <FieldType alias="NewField" column="NewColumn"/>
+                        <FieldType alias="RefField" column="RefColumn"/>
                     </FieldsType>
                 </EntityType>
             </ReferencesType>

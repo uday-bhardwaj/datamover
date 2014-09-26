@@ -34,7 +34,6 @@ public class ModelUnmarshallTest {
         FieldType field = objFactory.createFieldType();
         field.setAlias("TestAlias");
         field.setColumn("TestColumn");
-        field.setValue("");
 
         FieldsType fields = objFactory.createFieldsType();
         fields.getFieldType().add(field);

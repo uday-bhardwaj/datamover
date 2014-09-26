@@ -45,7 +45,7 @@ public class DBEntityWriter implements EntityWriter {
 
         boolean fieldCopied = false;
         for (Field sourceField : source.getFields()) {
-            if (sourceField.getType().getAlias().equals(sourceColumn)) {
+            if (sourceColumn.equals(sourceField.getType().getAlias())) {
                 FieldType fieldType = new FieldType();
                 fieldType.setColumn(destColumn);
                 Field field = new Field();

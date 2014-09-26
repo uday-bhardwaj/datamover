@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ModelType version="1.0" xmlns="http://www.arekusu.com">
-<DefinitionType rootElement="Directory">
-        <EntityType alias="Person">
+    <DefinitionType rootElement="Directory">
+    <EntityType alias="Person">
             <FieldsType schema="PUBLIC" table="Persons">
                 <FieldType alias="CodeName" column="Code"/>
                 <FieldType alias="FirstName" column="Name"/>
