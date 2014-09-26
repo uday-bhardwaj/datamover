@@ -9,4 +9,6 @@ public interface EntityDAO {
     void insertSimpleEntity(Entity entity);
 
     List<Entity> readSimpleEntity(EntityType entityType);
+
+    List<Entity> readLinkedEntity(EntityType entityType, String keyColumn, String keyValue);
 }

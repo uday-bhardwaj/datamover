@@ -25,16 +25,16 @@ public class DataMover {
     private XMLFileModelReader modelReader;
 
     @Autowired
-    private TransportFileReader fileReader;
+    private TransportFileReader transportFileReader;
 
     @Autowired
-    private EntityWriter writer;
+    private EntityWriter dbEntityWriter;
 
     @Autowired
     private EntityReader entityReader;
 
     @Autowired
-    private XMLFileEntityWriter entityWriter;
+    private XMLFileEntityWriter entityFileWriter;
 
     public static void main(String[] args) {
         ApplicationContext ctx = new ClassPathXmlApplicationContext("/spring/application-context.xml");
@@ -62,12 +62,12 @@ public class DataMover {
     }
 
     public void importFile(File transportFile, File model) {
-        Entity entity = fileReader.read(transportFile, modelReader.readModel(model));
-        writer.write(entity);
+        List<Entity> entities = transportFileReader.read(transportFile, modelReader.readModel(model));
+        dbEntityWriter.write(entities);
     }
 
     public void exportFile(File outputFile, File model) {
         List<Entity> entities = entityReader.readEntities(modelReader.readModel(model).getDefinitionType().getEntityType());
-        entityWriter.writeEntities(entities, outputFile);
+        entityFileWriter.writeEntities(entities, outputFile);
     }
 }

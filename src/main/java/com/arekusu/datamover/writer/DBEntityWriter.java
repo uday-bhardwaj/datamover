@@ -7,15 +7,23 @@ import com.arekusu.datamover.model.Field;
 import com.arekusu.datamover.model.jaxb.FieldType;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.List;
+
 public class DBEntityWriter implements EntityWriter {
 
     @Autowired
     EntityDAO dao;
 
     @Override
-    public void write(Entity entity) {
+    public void write(List<Entity> entities) {
+        for (Entity en : entities) {
+            writeEntity(en);
+        }
+    }
+
+    private void writeEntity(Entity entity) {
         for (Entity en : entity.getLinkedEntities()) {
-            write(en);
+            writeEntity(en);
             copyField(en, entity, en.getType().getSourceField(), en.getType().getDestinationField());
         }
 
@@ -23,7 +31,7 @@ public class DBEntityWriter implements EntityWriter {
 
         for (Entity en : entity.getRefEntities()) {
             copyField(entity, en, en.getType().getSourceField(), en.getType().getDestinationField());
-            write(en);
+            writeEntity(en);
         }
     }
 

@@ -2,6 +2,7 @@ package com.arekusu.datamover.reader;
 
 import com.arekusu.datamover.dao.EntityDAO;
 import com.arekusu.datamover.model.Entity;
+import com.arekusu.datamover.model.Field;
 import com.arekusu.datamover.model.jaxb.EntityType;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -18,22 +19,28 @@ public class DBEntityReader implements EntityReader {
 
         if (entities != null) {
             for (Entity en : entities) {
-                if (entityType.getLinksType() != null) {
-                    fillEntity(en.getLinkedEntities(), entityType.getLinksType().getEntityType());
-                }
-                if (entityType.getReferencesType() != null) {
-                    fillEntity(en.getRefEntities(), entityType.getReferencesType().getEntityType());
-                }
+                fillRefEntity(entityType, en);
             }
         }
 
         return entities;
     }
 
-    private void fillEntity(List<Entity> entities, List<EntityType> entityType) {
-        for (EntityType en : entityType) {
-            entities.addAll(readEntities(en));
+    private void fillRefEntity(EntityType entityType, Entity entity) {
+        if (entityType.getReferencesType() != null) {
+            for (EntityType en : entityType.getReferencesType().getEntityType()) {
+                entity.getRefEntities().addAll(dao.readLinkedEntity(en, en.getDestinationField(), getFieldValue(entity, en.getSourceField())));
+            }
         }
+    }
+
+    private String getFieldValue(Entity entity, String destinationField) {
+        for (Field field : entity.getFields()) {
+            if (field.getType().getAlias().equals(destinationField)) {
+                return field.getValue();
+            }
+        }
+        return null;
     }
 
 }

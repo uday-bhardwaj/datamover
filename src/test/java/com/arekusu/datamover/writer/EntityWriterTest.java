@@ -80,7 +80,7 @@ public class EntityWriterTest {
         reference.getLinkedEntities().add(linkedEntity);
         reference.getRefEntities().add(refEntity);
 
-        writer.write(en);
+        //writer.write(en);
 
         ArgumentCaptor<Entity> entityCaptor = ArgumentCaptor.forClass(Entity.class);
         verify(dao, times(3)).insertSimpleEntity(entityCaptor.capture());

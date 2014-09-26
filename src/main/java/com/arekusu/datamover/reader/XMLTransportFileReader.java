@@ -18,16 +18,24 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class XMLTransportFileReader implements TransportFileReader {
 
     Logger logger = LoggerFactory.getLogger(XMLTransportFileReader.class);
 
     @Override
-    public Entity read(File transportFile, ModelType model) {
+    public List<Entity> read(File transportFile, ModelType model) {
+        List<Entity> result = new ArrayList<Entity>();
         Document root = parseXmlTransportFile(transportFile);
-        Entity result = null;
-        result = fillEntity(root.getChildNodes().item(0).getChildNodes().item(1), model.getDefinitionType().getEntityType());
+        NodeList nodeList = root.getDocumentElement().getChildNodes();
+        for (int i = 0; i < nodeList.getLength(); i++) {
+            if (nodeList.item(i).getNodeType() != Node.ELEMENT_NODE) {
+                continue;
+            }
+            result.add(fillEntity(nodeList.item(i), model.getDefinitionType().getEntityType()));
+        }
 
         return result;
     }

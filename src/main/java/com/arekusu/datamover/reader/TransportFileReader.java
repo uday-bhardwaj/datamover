@@ -4,7 +4,8 @@ import com.arekusu.datamover.model.Entity;
 import com.arekusu.datamover.model.jaxb.ModelType;
 
 import java.io.File;
+import java.util.List;
 
 public interface TransportFileReader {
-    Entity read(File transportFile, ModelType model);
+    List<Entity> read(File transportFile, ModelType model);
 }
