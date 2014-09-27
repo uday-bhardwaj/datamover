@@ -13,7 +13,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import javax.xml.bind.JAXBException;
 import java.io.File;
 
 import static com.shazam.shazamcrest.MatcherAssert.assertThat;
@@ -26,11 +25,11 @@ public class XMLFileModelReaderTest {
     @Autowired
     private XMLFileModelReader modelReader;
 
-    @Value("classpath:simpleModel.xml")
+    @Value("classpath:/models/simpleModel.xml")
     File simpleModel;
 
     @Test
-    public void simpleModelUnmarshallTest() throws JAXBException {
+    public void simpleModelUnmarshallTest() {
         ModelType model = modelReader.readModel(simpleModel);
 
         EntityType referenceEntityType = new EntityBuilder()
