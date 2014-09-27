@@ -20,13 +20,13 @@ import static com.shazam.shazamcrest.MatcherAssert.assertThat;
 import static com.shazam.shazamcrest.matcher.Matchers.sameBeanAs;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = "classpath:spring/modelReaderText.xml")
+@ContextConfiguration(locations = "classpath:/spring/modelReaderText.xml")
 public class XMLFileModelReaderTest {
 
     @Autowired
     private XMLFileModelReader modelReader;
 
-    @Value("classpath:/models/simpleModel.xml")
+    @Value("classpath:simpleModel.xml")
     File simpleModel;
 
     @Test
