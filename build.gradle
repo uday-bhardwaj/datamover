@@ -20,6 +20,7 @@ repositories {
 dependencies {
     versionManagement 'io.spring.platform:platform-versions:1.0.2.RELEASE@properties'
 
+    compile group: 'org.hamcrest', name: 'hamcrest-all'
     testCompile(group: 'junit', name: 'junit', version: '4.11') {
         exclude group: 'org.hamcrest', module: 'hamcrest-core';
     }
@@ -28,7 +29,6 @@ dependencies {
     testCompile(group: 'org.mockito', name: 'mockito-all', version: '1.9.5') {
         exclude group: 'org.hamcrest', module: 'hamcrest-core';
     }
-    compile group: 'org.hamcrest', name: 'hamcrest-all'
     compile group: 'org.springframework', name: 'spring-core'
     compile group: 'org.springframework', name: 'spring-beans'
     compile group: 'org.springframework', name: 'spring-context'
