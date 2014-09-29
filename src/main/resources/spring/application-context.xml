@@ -15,6 +15,15 @@
         <property name="model" value="classpath:/testModel.xml"/>
     </bean>
 
+    <bean id="main" class="com.arekusu.datamover.Main">
+        <property name="dataMoversMap">
+            <map>
+                <entry key="import" value-ref="importDataMover"/>
+                <entry key="export" value-ref="exportDataMover"/>
+            </map>
+        </property>
+    </bean>
+
     <bean id="importDataMover" class="com.arekusu.datamover.DataMover">
         <property name="modelReader" ref="modelReader"/>
         <property name="entityReader">
@@ -59,8 +68,6 @@
             </list>
         </property>
     </bean>
-
-    <bean id="main" class="com.arekusu.datamover.Main"/>
 
     <bean id="simpleDBDAO" class="com.arekusu.datamover.dao.SimpleDBDAO"/>
 
