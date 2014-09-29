@@ -12,4 +12,28 @@
             <PhoneNumber>NewValue</PhoneNumber>
         </Phone>
     </Person>
+    <Person>
+        <CodeName>NewMany</CodeName>
+        <FirstName>Mikey</FirstName>
+        <LastName>Appy</LastName>
+        <Pet>
+            <CodeName>Caty</CodeName>
+            <Type>Cheshirey</Type>
+        </Pet>
+        <Phone>
+            <PhoneNumber>12345y</PhoneNumber>
+        </Phone>
+    </Person>
+    <Person>
+        <CodeName>Strangery</CodeName>
+        <FirstName>Larryy</FirstName>
+        <LastName>Flinty</LastName>
+        <Pet>
+            <CodeName>Pusy</CodeName>
+            <Type>Chinchillay</Type>
+        </Pet>
+        <Phone>
+            <PhoneNumber>Motoy</PhoneNumber>
+        </Phone>
+    </Person>
 </Directory>

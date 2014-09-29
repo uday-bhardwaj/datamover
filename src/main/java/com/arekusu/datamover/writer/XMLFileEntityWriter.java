@@ -1,5 +1,6 @@
 package com.arekusu.datamover.writer;
 
+import com.arekusu.datamover.exception.EntityWriterException;
 import com.arekusu.datamover.model.Entity;
 import com.arekusu.datamover.model.Field;
 import com.arekusu.datamover.model.jaxb.ModelType;
@@ -12,11 +13,20 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
 
-public class XMLFileEntityWriter {
+public class XMLFileEntityWriter implements EntityWriter {
 
     private static final XMLOutputFactory outputFactory = XMLOutputFactory.newInstance();
 
-    public void writeEntities(List<Entity> entities, ModelType model, File outputFile) {
+    private File outputFile;
+
+    @Override
+    public void write(List<Entity> entities, ModelType model) {
+        if (outputFile == null) {
+            throw new EntityWriterException("Output file value is not set.");
+        }
+        if (model == null) {
+            throw new EntityWriterException("Model value is not set.");
+        }
         IndentingXMLStreamWriter eventWriter = null;
         FileOutputStream fos = null;
         try {
@@ -89,6 +99,14 @@ public class XMLFileEntityWriter {
     public static void createEndNode(IndentingXMLStreamWriter eventWriter)
             throws XMLStreamException {
         eventWriter.writeEndElement();
+    }
+
+    public File getOutputFile() {
+        return outputFile;
+    }
+
+    public void setOutputFile(File outputFile) {
+        this.outputFile = outputFile;
     }
 
 }

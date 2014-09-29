@@ -5,6 +5,7 @@ import com.arekusu.datamover.exception.EntityWriterException;
 import com.arekusu.datamover.model.Entity;
 import com.arekusu.datamover.model.Field;
 import com.arekusu.datamover.model.jaxb.FieldType;
+import com.arekusu.datamover.model.jaxb.ModelType;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
@@ -15,7 +16,7 @@ public class DBEntityWriter implements EntityWriter {
     EntityDAO dao;
 
     @Override
-    public void write(List<Entity> entities) {
+    public void write(List<Entity> entities, ModelType modelType) {
         for (Entity en : entities) {
             writeEntity(en);
         }

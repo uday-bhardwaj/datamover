@@ -1,13 +1,19 @@
+
 package com.arekusu.datamover.model.jaxb;
 
-import javax.xml.bind.annotation.*;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
 
 
 /**
  * <p>Java class for anonymous complex type.
- * <p/>
+ * 
  * <p>The following schema fragment specifies the expected content contained within this class.
- * <p/>
+ * 
  * <pre>
  * &lt;complexType>
  *   &lt;complexContent>
@@ -20,10 +26,12 @@ import javax.xml.bind.annotation.*;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
+ * 
+ * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-        "entityType"
+    "entityType"
 })
 @XmlRootElement(name = "DefinitionType", namespace = "http://www.arekusu.com")
 public class DefinitionType {
@@ -35,9 +43,11 @@ public class DefinitionType {
 
     /**
      * Gets the value of the entityType property.
-     *
-     * @return possible object is
-     * {@link EntityType }
+     * 
+     * @return
+     *     possible object is
+     *     {@link EntityType }
+     *     
      */
     public EntityType getEntityType() {
         return entityType;
@@ -45,9 +55,11 @@ public class DefinitionType {
 
     /**
      * Sets the value of the entityType property.
-     *
-     * @param value allowed object is
-     *              {@link EntityType }
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link EntityType }
+     *     
      */
     public void setEntityType(EntityType value) {
         this.entityType = value;
@@ -55,9 +67,11 @@ public class DefinitionType {
 
     /**
      * Gets the value of the rootElement property.
-     *
-     * @return possible object is
-     * {@link String }
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
      */
     public String getRootElement() {
         return rootElement;
@@ -65,9 +79,11 @@ public class DefinitionType {
 
     /**
      * Sets the value of the rootElement property.
-     *
-     * @param value allowed object is
-     *              {@link String }
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
      */
     public void setRootElement(String value) {
         this.rootElement = value;

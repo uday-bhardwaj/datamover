@@ -1,13 +1,19 @@
+
 package com.arekusu.datamover.model.jaxb;
 
-import javax.xml.bind.annotation.*;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
 
 
 /**
  * <p>Java class for anonymous complex type.
- * <p/>
+ * 
  * <p>The following schema fragment specifies the expected content contained within this class.
- * <p/>
+ * 
  * <pre>
  * &lt;complexType>
  *   &lt;complexContent>
@@ -24,12 +30,14 @@ import javax.xml.bind.annotation.*;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
+ * 
+ * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-        "fieldsType",
-        "referencesType",
-        "linksType"
+    "fieldsType",
+    "referencesType",
+    "linksType"
 })
 @XmlRootElement(name = "EntityType", namespace = "http://www.arekusu.com")
 public class EntityType {
@@ -49,9 +57,11 @@ public class EntityType {
 
     /**
      * Gets the value of the fieldsType property.
-     *
-     * @return possible object is
-     * {@link FieldsType }
+     * 
+     * @return
+     *     possible object is
+     *     {@link FieldsType }
+     *     
      */
     public FieldsType getFieldsType() {
         return fieldsType;
@@ -59,9 +69,11 @@ public class EntityType {
 
     /**
      * Sets the value of the fieldsType property.
-     *
-     * @param value allowed object is
-     *              {@link FieldsType }
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link FieldsType }
+     *     
      */
     public void setFieldsType(FieldsType value) {
         this.fieldsType = value;
@@ -69,9 +81,11 @@ public class EntityType {
 
     /**
      * Gets the value of the referencesType property.
-     *
-     * @return possible object is
-     * {@link ReferencesType }
+     * 
+     * @return
+     *     possible object is
+     *     {@link ReferencesType }
+     *     
      */
     public ReferencesType getReferencesType() {
         return referencesType;
@@ -79,9 +93,11 @@ public class EntityType {
 
     /**
      * Sets the value of the referencesType property.
-     *
-     * @param value allowed object is
-     *              {@link ReferencesType }
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link ReferencesType }
+     *     
      */
     public void setReferencesType(ReferencesType value) {
         this.referencesType = value;
@@ -89,9 +105,11 @@ public class EntityType {
 
     /**
      * Gets the value of the linksType property.
-     *
-     * @return possible object is
-     * {@link LinksType }
+     * 
+     * @return
+     *     possible object is
+     *     {@link LinksType }
+     *     
      */
     public LinksType getLinksType() {
         return linksType;
@@ -99,9 +117,11 @@ public class EntityType {
 
     /**
      * Sets the value of the linksType property.
-     *
-     * @param value allowed object is
-     *              {@link LinksType }
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link LinksType }
+     *     
      */
     public void setLinksType(LinksType value) {
         this.linksType = value;
@@ -109,9 +129,11 @@ public class EntityType {
 
     /**
      * Gets the value of the alias property.
-     *
-     * @return possible object is
-     * {@link String }
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
      */
     public String getAlias() {
         return alias;
@@ -119,9 +141,11 @@ public class EntityType {
 
     /**
      * Sets the value of the alias property.
-     *
-     * @param value allowed object is
-     *              {@link String }
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
      */
     public void setAlias(String value) {
         this.alias = value;
@@ -129,9 +153,11 @@ public class EntityType {
 
     /**
      * Gets the value of the sourceField property.
-     *
-     * @return possible object is
-     * {@link String }
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
      */
     public String getSourceField() {
         return sourceField;
@@ -139,9 +165,11 @@ public class EntityType {
 
     /**
      * Sets the value of the sourceField property.
-     *
-     * @param value allowed object is
-     *              {@link String }
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
      */
     public void setSourceField(String value) {
         this.sourceField = value;
@@ -149,9 +177,11 @@ public class EntityType {
 
     /**
      * Gets the value of the destinationField property.
-     *
-     * @return possible object is
-     * {@link String }
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
      */
     public String getDestinationField() {
         return destinationField;
@@ -159,9 +189,11 @@ public class EntityType {
 
     /**
      * Sets the value of the destinationField property.
-     *
-     * @param value allowed object is
-     *              {@link String }
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
      */
     public void setDestinationField(String value) {
         this.destinationField = value;

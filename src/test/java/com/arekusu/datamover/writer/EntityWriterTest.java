@@ -55,7 +55,7 @@ public class EntityWriterTest {
 
         Entity reference = new EntityBuilder(entity).build();
 
-        writer.write(Arrays.asList(entity));
+        writer.write(Arrays.asList(entity), null);
 
         ArgumentCaptor<Entity> entityCaptor = ArgumentCaptor.forClass(Entity.class);
         verify(dao, times(3)).insertSimpleEntity(entityCaptor.capture());

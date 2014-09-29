@@ -9,11 +9,8 @@ import com.arekusu.datamover.test.util.FieldBuilder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-
-import java.io.File;
 
 import static com.shazam.shazamcrest.MatcherAssert.assertThat;
 import static com.shazam.shazamcrest.matcher.Matchers.sameBeanAs;
@@ -25,12 +22,9 @@ public class XMLFileModelReaderTest {
     @Autowired
     private XMLFileModelReader modelReader;
 
-    @Value("classpath:/models/simpleModel.xml")
-    File simpleModel;
-
     @Test
     public void simpleModelUnmarshallTest() {
-        ModelType model = modelReader.readModel(simpleModel);
+        ModelType model = modelReader.readModel();
 
         EntityType referenceEntityType = new EntityBuilder()
                 .withAlias("Element")

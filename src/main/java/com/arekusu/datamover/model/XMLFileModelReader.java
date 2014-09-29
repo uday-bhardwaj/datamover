@@ -9,8 +9,11 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 import java.io.File;
 
-public class XMLFileModelReader {
-    public ModelType readModel(File model) {
+public class XMLFileModelReader implements ModelReader {
+    private File model;
+
+    @Override
+    public ModelType readModel() {
         try {
             JAXBContext context = JAXBContext.newInstance(ObjectFactory.class);
             Unmarshaller unmarshaller = context.createUnmarshaller();
@@ -19,4 +22,14 @@ public class XMLFileModelReader {
             throw new ModelReaderException("Error occurred while trying to parse model: " + e.getMessage(), e);
         }
     }
+
+    public void setModel(File model) {
+        this.model = model;
+    }
+
+    public File getModel() {
+        return model;
+    }
+
+
 }
