@@ -59,12 +59,10 @@
         <property name="filterFieldAlias" value="CodeName"/>
         <property name="includes">
             <list>
-                <value>Strangery</value>
             </list>
         </property>
         <property name="excludes">
             <list>
-                <value>JDa</value>
             </list>
         </property>
     </bean>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ModelType version="1.0" xmlns="http://www.arekusu.com">
-    <DefinitionType rootElement="Transport" filterField="Field1">
-        <EntityType alias="Element">
+    <DefinitionType rootElement="Transport">
+    <EntityType alias="Element">
             <FieldsType schema="TestSchema" table="TestTable">
                 <FieldType alias="Field1" column="TestColumn"/>
                 <FieldType alias="Field2" column="AnotherTestColumn"/>
