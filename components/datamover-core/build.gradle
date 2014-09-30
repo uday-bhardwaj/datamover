@@ -1,0 +1,44 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'org.springframework.boot:spring-boot-gradle-plugin:1.1.6.RELEASE'
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'spring-boot'
+
+sourceCompatibility = 1.7
+version = '1.0'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    versionManagement 'io.spring.platform:platform-versions:1.0.2.RELEASE@properties'
+
+    compile group: 'org.hamcrest', name: 'hamcrest-all'
+    testCompile(group: 'junit', name: 'junit', version: '4.11') {
+        exclude group: 'org.hamcrest', module: 'hamcrest-core';
+    }
+    testCompile group: 'org.springframework', name: 'spring-test'
+    testCompile group: 'com.shazam', name: 'shazamcrest', version: '0.7'
+    testCompile(group: 'org.mockito', name: 'mockito-all', version: '1.9.5') {
+        exclude group: 'org.hamcrest', module: 'hamcrest-core';
+    }
+    compile group: 'org.springframework', name: 'spring-core'
+    compile group: 'org.springframework', name: 'spring-beans'
+    compile group: 'org.springframework', name: 'spring-context'
+    compile group: 'org.springframework', name: 'spring-jdbc'
+    compile group: 'org.slf4j', name: 'log4j-over-slf4j'
+    compile group: 'org.slf4j', name: 'slf4j-api'
+    compile group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.5'
+    compile group: 'com.h2database', name: 'h2'
+    compile group: 'org.apache.commons', name: 'commons-dbcp2'
+    compile group: 'com.google.guava', name: 'guava'
+    compile group: 'com.sun.xml.bind', name: 'jaxb-impl', version: '2.2.4'
+
+}
