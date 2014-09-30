@@ -1,2 +1,5 @@
-rootProject.name = 'DataMover'
+rootProject.name = 'datamover-parent'
+include ':datamover-core'
+
+project(':datamover-core').projectDir = "$rootDir/components/datamover-core" as File
 
