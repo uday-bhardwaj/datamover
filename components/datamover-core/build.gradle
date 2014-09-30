@@ -1,5 +1,11 @@
+group = "com.arekusu.datamover"
+archivesBaseName = "datamover-core"
+version = "0.0.1"
+
 apply plugin: 'java'
 apply plugin: 'spring-boot'
+apply plugin: 'maven'
+apply plugin: 'signing'
 
 sourceCompatibility = 1.7
 version = '1.0'
@@ -32,4 +38,22 @@ dependencies {
     compile group: 'com.google.guava', name: 'guava'
     compile group: 'com.sun.xml.bind', name: 'jaxb-impl', version: '2.2.4'
 
+}
+
+task javadocJar(type: Jar) {
+    classifier = 'javadoc'
+    from javadoc
+}
+
+task sourcesJar(type: Jar) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+artifacts {
+    archives javadocJar, sourcesJar
+}
+
+signing {
+    sign configurations.archives
 }
