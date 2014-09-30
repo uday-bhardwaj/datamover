@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ModelType version="1.0" xmlns="http://www.arekusu.com">
+    <DefinitionType rootElement="Transport">
+        <EntityType alias="Element">
+            <FieldsType schema="TestSchema" table="TestTable">
+                <FieldType alias="Field1" column="TestColumn"/>
+                <FieldType alias="Field2" column="AnotherTestColumn"/>
+            </FieldsType>
+            <ReferencesType>
+                <EntityType alias="RefElement" sourceField="" destinationField="">
+                    <FieldsType>
+                        <FieldType alias="RefField" column="RefColumn"/>
+                    </FieldsType>
+                </EntityType>
+            </ReferencesType>
+            <LinksType>
+                <EntityType alias="LinkedElement" sourceField="" destinationField="">
+                    <FieldsType>
+                        <FieldType alias="LinkedField" column="LinkedColumn"/>
+                    </FieldsType>
+                </EntityType>
+            </LinksType>
+        </EntityType>
+    </DefinitionType>
+</ModelType>
