@@ -14,3 +14,4 @@ hs_err_pid*
 DataMover.iml
 .idea/
 components/datamover-core/datamover-core.iml
+datamover-parent.iml
