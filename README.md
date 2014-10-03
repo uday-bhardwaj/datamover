@@ -9,7 +9,7 @@ Basic Process Overview
 ![Process Overview](/docs/images/Process_overview.png "Process Overview")
 
 
-## At the core of DataMover lies a simple process (Similar to ETL)
+##### At the core of DataMover lies a simple process (Similar to ETL)
 
 1. Read the model. Model is where defined all the rules that drive following steps of this process.
 2. Read entities from some source.
@@ -20,14 +20,14 @@ DataMover provides several implementations of these interfaces and allow to plug
 
 Entity Reader implementations:
 ------
-1. XMLFileEntityReader
-2. DBEntityReader
+##### 1. XMLFileEntityReader
+##### 2. DBEntityReader
 
 Entity Writer implementations:
 ------
-1. XMLFileEntityWriter
-2. DBEntityWriter
+##### 1. XMLFileEntityWriter
+##### 2. DBEntityWriter
 
 Model Reader implementations:
 ------
-1. XMLFileModelReader
+##### 1. XMLFileModelReader
