@@ -15,12 +15,15 @@ At the core of DataMover lies a simple process (Similar to ETL)
 DataMover provides several implementations of these interfaces and allow to plug-in your custom implementations.
 
 Entity Reader implementations:
+------
 1. XMLFileEntityReader
 2. DBEntityReader
 
 Entity Writer implementations:
+------
 1. XMLFileEntityWriter
 2. DBEntityWriter
 
 Model Reader implementations:
+------
 1. XMLFileModelReader
