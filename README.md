@@ -22,6 +22,7 @@ DataMover provides several implementations of these interfaces and allow to plug
 Entity
 -----
 Entity is the central concept of the framework.
+
 ![Entity Overview](/docs/images/Entity_overview.png "Entity Overview")
 
 It contains all the information of your business entities in unified way.
@@ -30,6 +31,7 @@ It contains all the information of your business entities in unified way.
 Model
 -----
 Model is the second core concept
+
 ![Model Overview](/docs/images/Model_overview.png "Model Overview")
 
 Model contains the definition of particular business entity so that other classes would be able to work with your data in the form of unified entities.
