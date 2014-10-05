@@ -36,7 +36,8 @@ It contains all the information of your business entities in unified way.
 The rules necessary to transform business representation to unified entity are defined in the model classes.
 Type fields (EntityType, FieldType) are populated with corresponding classes of model when Entity is being created by EntityReader.
 
-The other convenient way to look at Entity is hierarchy tree:
+The other convenient way to approach Entity is in form of tree:
+
 ![Entity Tree](/docs/images/Entity_tree.png "Entity Tree")
 
 
