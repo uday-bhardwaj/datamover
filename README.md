@@ -18,6 +18,14 @@ Basic Process Overview
 
 DataMover provides several implementations of these interfaces and allow to plug-in your custom implementations.
 
+Model
+-----
+Model is the second core concept
+
+![Model Overview](/docs/images/Model_overview.png "Model Overview")
+
+Model contains the definition of particular business entity so that other classes would be able to work with your data in the form of unified entities.
+
 
 Entity
 -----
@@ -28,15 +36,6 @@ Entity is the central concept of the framework.
 It contains all the information of your business entities in unified way.
 
 ![Entity Tree](/docs/images/Entity_tree.png "Entity Tree")
-
-
-Model
------
-Model is the second core concept
-
-![Model Overview](/docs/images/Model_overview.png "Model Overview")
-
-Model contains the definition of particular business entity so that other classes would be able to work with your data in the form of unified entities.
 
 
 Entity Reader implementations:
