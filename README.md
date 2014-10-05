@@ -27,6 +27,8 @@ Entity is the central concept of the framework.
 
 It contains all the information of your business entities in unified way.
 
+![Entity Tree](/docs/images/Entity_tree.png "Entity Tree")
+
 
 Model
 -----
