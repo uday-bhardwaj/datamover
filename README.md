@@ -3,6 +3,55 @@ DataMover
 
 DataMover is a simple framework for business data migration between applications
 
+### Repositories
+
+#### Release version
+
+Or maven central: http://repo1.maven.org/maven2/
+
+__Maven__
+
+```xml
+<dependency>
+    <groupId>com.arekusu</groupId>
+    <artifactId>datamover-core</artifactId>
+    <version>0.1.0</version>
+</dependency>
+
+```
+
+__Gradle__
+
+```groovy
+compile "com.arekusu:datamover-core:0.1.0"
+```
+
+#### Snapshot version
+
+__Maven__
+```xml
+<repositories>
+    <repository>
+      <id>sonatype-snapshots</id>
+      <name>Sonatype</name>
+      <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+    </repository>
+</repositories>
+
+<dependency>
+    <groupId>com.arekusu</groupId>
+    <artifactId>datamover-core</artifactId>
+    <version>0.1.0-SNAPSHOT</version>
+</dependency>
+```
+
+__Gradle__
+
+```groovy
+compile "com.arekusu:datamover-core:0.1.0-SNAPSHOT"
+```
+
+
 Basic Process Overview
 ------
 
