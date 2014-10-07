@@ -9,7 +9,6 @@ import com.google.common.base.Joiner;
 import com.google.common.collect.Lists;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 
@@ -21,9 +20,7 @@ import java.util.List;
 import java.util.Map;
 
 public class SimpleDBDAO implements EntityDAO {
-
-    @Autowired
-    JdbcTemplate jdbcTemplate;
+    private JdbcTemplate jdbcTemplate;
 
     Logger logger = LoggerFactory.getLogger(SimpleDBDAO.class);
 
@@ -119,5 +116,9 @@ public class SimpleDBDAO implements EntityDAO {
             }
             return entity;
         }
+    }
+
+    public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
     }
 }

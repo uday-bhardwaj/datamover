@@ -7,36 +7,38 @@ import com.arekusu.datamover.model.jaxb.ObjectFactory;
 import com.arekusu.datamover.reader.filter.EntityFilter;
 import com.arekusu.datamover.test.util.EntityBuilder;
 import com.arekusu.datamover.test.util.FieldBuilder;
+import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 import java.io.File;
+import java.net.URISyntaxException;
 import java.util.List;
 
 import static com.shazam.shazamcrest.MatcherAssert.assertThat;
 import static com.shazam.shazamcrest.matcher.Matchers.sameBeanAs;
 import static org.mockito.Matchers.any;
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = "classpath:spring/readerTest.xml")
 public class XMLTransportFileReaderTest {
 
-    @Autowired
-    private EntityReader reader;
+    private XMLFileEntityReader reader;
 
-    @Autowired
     private EntityFilter entityFilter;
 
-    @Value("classpath:/models/simpleModel.xml")
     File modelFile;
+
+    @Before
+    public void init() throws URISyntaxException {
+        reader = new XMLFileEntityReader();
+        entityFilter = mock(EntityFilter.class);
+        reader.setFilter(entityFilter);
+        reader.setTransportFile(new File(this.getClass().getResource("/transportFiles/simpleTransportFile.xml").toURI()));
+        modelFile = new File(this.getClass().getResource("/models/simpleModel.xml").toURI());
+    }
 
     @Test
     public void readSimpleFileTest() throws JAXBException {

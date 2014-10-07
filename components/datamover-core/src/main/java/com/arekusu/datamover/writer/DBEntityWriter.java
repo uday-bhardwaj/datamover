@@ -6,14 +6,12 @@ import com.arekusu.datamover.model.Entity;
 import com.arekusu.datamover.model.Field;
 import com.arekusu.datamover.model.jaxb.FieldType;
 import com.arekusu.datamover.model.jaxb.ModelType;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
 public class DBEntityWriter implements EntityWriter {
 
-    @Autowired
-    EntityDAO dao;
+    private EntityDAO dao;
 
     @Override
     public void write(List<Entity> entities, ModelType modelType) {
@@ -60,6 +58,10 @@ public class DBEntityWriter implements EntityWriter {
         if (!fieldCopied) {
             throw new EntityWriterException("Unable to find column with alias " + sourceColumn + " for entity " + source.getType().getAlias());
         }
+    }
+
+    public void setDao(EntityDAO dao) {
+        this.dao = dao;
     }
 
 }

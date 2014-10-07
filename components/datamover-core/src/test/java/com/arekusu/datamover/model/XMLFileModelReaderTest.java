@@ -6,21 +6,24 @@ import com.arekusu.datamover.model.jaxb.ModelType;
 import com.arekusu.datamover.model.jaxb.ObjectFactory;
 import com.arekusu.datamover.test.util.EntityBuilder;
 import com.arekusu.datamover.test.util.FieldBuilder;
+import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import java.io.File;
+import java.net.URISyntaxException;
 
 import static com.shazam.shazamcrest.MatcherAssert.assertThat;
 import static com.shazam.shazamcrest.matcher.Matchers.sameBeanAs;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = "classpath:/spring/modelReaderText.xml")
 public class XMLFileModelReaderTest {
 
-    @Autowired
     private XMLFileModelReader modelReader;
+
+    @Before
+    public void init() throws URISyntaxException {
+        modelReader = new XMLFileModelReader();
+        modelReader.setModel(new File(this.getClass().getResource("/models/simpleModel.xml").toURI()));
+    }
 
     @Test
     public void simpleModelUnmarshallTest() {

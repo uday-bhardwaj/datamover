@@ -1,15 +1,13 @@
 package com.arekusu.datamover.writer;
 
 import com.arekusu.datamover.dao.EntityDAO;
+import com.arekusu.datamover.dao.SimpleDBDAO;
 import com.arekusu.datamover.model.Entity;
 import com.arekusu.datamover.test.util.EntityBuilder;
 import com.arekusu.datamover.test.util.FieldBuilder;
+import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.mockito.ArgumentCaptor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.Arrays;
 
@@ -17,15 +15,18 @@ import static com.shazam.shazamcrest.MatcherAssert.assertThat;
 import static com.shazam.shazamcrest.matcher.Matchers.sameBeanAs;
 import static org.mockito.Mockito.*;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = "classpath:spring/writerTest.xml")
 public class EntityWriterTest {
 
-    @Autowired
-    EntityWriter writer;
+    DBEntityWriter writer;
 
-    @Autowired
     EntityDAO dao;
+
+    @Before
+    public void init(){
+        writer = new DBEntityWriter();
+        dao = mock(SimpleDBDAO.class);
+        writer.setDao(dao);
+    }
 
     @Test
     public void simpleWriteTest() {

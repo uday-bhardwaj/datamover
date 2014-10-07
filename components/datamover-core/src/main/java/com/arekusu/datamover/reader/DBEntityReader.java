@@ -6,14 +6,12 @@ import com.arekusu.datamover.model.Field;
 import com.arekusu.datamover.model.jaxb.EntityType;
 import com.arekusu.datamover.model.jaxb.ModelType;
 import com.arekusu.datamover.reader.filter.EntityFilter;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class DBEntityReader implements EntityReader {
 
-    @Autowired
     private EntityDAO dao;
 
     private EntityFilter filter;
@@ -65,4 +63,7 @@ public class DBEntityReader implements EntityReader {
         this.filter = filter;
     }
 
+    public void setDao(EntityDAO dao) {
+        this.dao = dao;
+    }
 }

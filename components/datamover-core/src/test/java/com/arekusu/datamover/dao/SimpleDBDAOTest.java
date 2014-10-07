@@ -3,26 +3,27 @@ package com.arekusu.datamover.dao;
 import com.arekusu.datamover.model.Entity;
 import com.arekusu.datamover.test.util.EntityBuilder;
 import com.arekusu.datamover.test.util.FieldBuilder;
+import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import static org.mockito.Matchers.any;
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = "classpath:spring/simpleDBDAOTest.xml")
 public class SimpleDBDAOTest {
 
-    @Autowired
-    EntityDAO dao;
+    SimpleDBDAO dao;
 
-    @Autowired
     JdbcTemplate jdbcTemplate;
+
+    @Before
+    public void init(){
+        dao = new SimpleDBDAO();
+        jdbcTemplate = mock(JdbcTemplate.class);
+        dao.setJdbcTemplate(jdbcTemplate);
+    }
 
     @Test
     public void insertSimpleEntityTest() {

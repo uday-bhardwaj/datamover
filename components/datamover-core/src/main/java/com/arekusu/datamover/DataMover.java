@@ -7,11 +7,9 @@ import com.arekusu.datamover.reader.EntityReader;
 import com.arekusu.datamover.writer.EntityWriter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-@Component
 public class DataMover {
 
     private static Logger logger = LoggerFactory.getLogger(DataMover.class);
