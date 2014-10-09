@@ -7,7 +7,7 @@ DataMover is a simple framework for business data migration between applications
 
 #### Release version
 
-Or maven central: http://repo1.maven.org/maven2/
+Maven central: http://repo1.maven.org/maven2/
 
 __Maven__
 
