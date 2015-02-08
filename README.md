@@ -7,13 +7,13 @@ DataMover is a simple framework for business data migration between applications
 
 #### Release version
 
-Or maven central: http://repo1.maven.org/maven2/
+Maven central: http://repo1.maven.org/maven2/
 
 __Maven__
 
 ```xml
 <dependency>
-    <groupId>com.arekusu</groupId>
+    <groupId>com.arekusu.datamover</groupId>
     <artifactId>datamover-core</artifactId>
     <version>0.1.0</version>
 </dependency>
@@ -23,7 +23,7 @@ __Maven__
 __Gradle__
 
 ```groovy
-compile "com.arekusu:datamover-core:0.1.0"
+compile "com.arekusu.datamover:datamover-core:0.1.0"
 ```
 
 #### Snapshot version
@@ -39,7 +39,7 @@ __Maven__
 </repositories>
 
 <dependency>
-    <groupId>com.arekusu</groupId>
+    <groupId>com.arekusu.datamover</groupId>
     <artifactId>datamover-core</artifactId>
     <version>0.1.0-SNAPSHOT</version>
 </dependency>
@@ -48,7 +48,7 @@ __Maven__
 __Gradle__
 
 ```groovy
-compile "com.arekusu:datamover-core:0.1.0-SNAPSHOT"
+compile "com.arekusu.datamover:datamover-core:0.1.0-SNAPSHOT"
 ```
 
 
