@@ -26,6 +26,7 @@ import javax.xml.bind.annotation.XmlType;
  *       &lt;attribute name="alias" type="{http://www.w3.org/2001/XMLSchema}string" />
  *       &lt;attribute name="sourceField" type="{http://www.w3.org/2001/XMLSchema}string" />
  *       &lt;attribute name="destinationField" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *       &lt;attribute name="destinationFieldOrder" type="{http://www.w3.org/2001/XMLSchema}string" />
  *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
@@ -54,6 +55,8 @@ public class EntityType {
     protected String sourceField;
     @XmlAttribute(name = "destinationField")
     protected String destinationField;
+    @XmlAttribute(name = "destinationFieldOrder")
+    protected String destinationFieldOrder;
 
     /**
      * Gets the value of the fieldsType property.
@@ -197,6 +200,30 @@ public class EntityType {
      */
     public void setDestinationField(String value) {
         this.destinationField = value;
+    }
+
+    /**
+     * Gets the value of the destinationFieldOrder property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getDestinationFieldOrder() {
+        return destinationFieldOrder;
+    }
+
+    /**
+     * Sets the value of the destinationFieldOrder property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setDestinationFieldOrder(String value) {
+        this.destinationFieldOrder = value;
     }
 
 }
