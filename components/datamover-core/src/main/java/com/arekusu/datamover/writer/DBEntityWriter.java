@@ -46,6 +46,7 @@ public class DBEntityWriter implements EntityWriter {
         for (Field sourceField : source.getFields()) {
             if (sourceColumn.equals(sourceField.getType().getAlias())) {
                 FieldType fieldType = new FieldType();
+                fieldType.setAlias(source.getType().getAlias());
                 fieldType.setColumn(destColumn);
                 fieldType.setOrder(source.getType().getDestinationFieldOrder());
                 Field field = new Field();

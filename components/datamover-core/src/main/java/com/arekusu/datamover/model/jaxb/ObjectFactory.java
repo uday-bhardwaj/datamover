@@ -46,6 +46,22 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link KeyValueExtension }
+     * 
+     */
+    public KeyValueExtension createKeyValueExtension() {
+        return new KeyValueExtension();
+    }
+
+    /**
+     * Create an instance of {@link KeyValueElement }
+     * 
+     */
+    public KeyValueElement createKeyValueElement() {
+        return new KeyValueElement();
+    }
+
+    /**
      * Create an instance of {@link FieldsType }
      * 
      */

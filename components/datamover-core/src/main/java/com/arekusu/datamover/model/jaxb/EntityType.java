@@ -19,6 +19,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
+ *         &lt;element ref="{http://www.arekusu.com}KeyValueExtension" minOccurs="0"/>
  *         &lt;element ref="{http://www.arekusu.com}FieldsType" minOccurs="0"/>
  *         &lt;element ref="{http://www.arekusu.com}ReferencesType" minOccurs="0"/>
  *         &lt;element ref="{http://www.arekusu.com}LinksType" minOccurs="0"/>
@@ -36,6 +37,7 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
+    "keyValueExtension",
     "fieldsType",
     "referencesType",
     "linksType"
@@ -43,6 +45,8 @@ import javax.xml.bind.annotation.XmlType;
 @XmlRootElement(name = "EntityType", namespace = "http://www.arekusu.com")
 public class EntityType {
 
+    @XmlElement(name = "KeyValueExtension", namespace = "http://www.arekusu.com")
+    protected KeyValueExtension keyValueExtension;
     @XmlElement(name = "FieldsType", namespace = "http://www.arekusu.com")
     protected FieldsType fieldsType;
     @XmlElement(name = "ReferencesType", namespace = "http://www.arekusu.com")
@@ -57,6 +61,30 @@ public class EntityType {
     protected String destinationField;
     @XmlAttribute(name = "destinationFieldOrder")
     protected String destinationFieldOrder;
+
+    /**
+     * Gets the value of the keyValueExtension property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link KeyValueExtension }
+     *     
+     */
+    public KeyValueExtension getKeyValueExtension() {
+        return keyValueExtension;
+    }
+
+    /**
+     * Sets the value of the keyValueExtension property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link KeyValueExtension }
+     *     
+     */
+    public void setKeyValueExtension(KeyValueExtension value) {
+        this.keyValueExtension = value;
+    }
 
     /**
      * Gets the value of the fieldsType property.
