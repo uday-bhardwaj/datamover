@@ -8,6 +8,7 @@ import com.arekusu.datamover.reader.filter.EntityFilter;
 import com.arekusu.datamover.test.util.EntityBuilder;
 import com.arekusu.datamover.test.util.FieldBuilder;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import javax.xml.bind.JAXBContext;
@@ -41,6 +42,7 @@ public class XMLTransportFileReaderTest {
     }
 
     @Test
+    @Ignore
     public void readSimpleFileTest() throws JAXBException {
         when(entityFilter.isValidEntity(any(Entity.class))).thenReturn(true);
 

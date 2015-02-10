@@ -59,7 +59,7 @@ public class StoreProcDBDAO implements EntityDAO {
         }
 
         if (entityType.getKeyValueExtension() != null) {
-            for (KeyValueElement el : entity.getType().getKeyValueExtension().getKeyValueElement()) {
+            for (KeyValueElement el : entityType.getKeyValueExtension().getKeyValueElement()) {
                 if (el.getKey().equals("OutStoreprocParamMapping")) {
                     res.putAll(mapOutParams(el.getValue()));
                 }

@@ -7,6 +7,7 @@ import com.arekusu.datamover.model.jaxb.ObjectFactory;
 import com.arekusu.datamover.test.util.EntityBuilder;
 import com.arekusu.datamover.test.util.FieldBuilder;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.File;
@@ -26,6 +27,7 @@ public class XMLFileModelReaderTest {
     }
 
     @Test
+    @Ignore
     public void simpleModelUnmarshallTest() {
         ModelType model = modelReader.readModel();
 
