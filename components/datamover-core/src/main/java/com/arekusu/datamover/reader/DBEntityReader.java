@@ -8,6 +8,7 @@ import com.arekusu.datamover.model.jaxb.ModelType;
 import com.arekusu.datamover.reader.filter.EntityFilter;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 public class DBEntityReader implements EntityReader {
@@ -22,9 +23,13 @@ public class DBEntityReader implements EntityReader {
         List<Entity> unfilteredEntities = dao.readSimpleEntity(entityType);
 
         List<Entity> entities = new ArrayList<Entity>();
-        for (Entity en : unfilteredEntities) {
-            if (filter.isValidEntity(en)) {
-                entities.add(en);
+        if (filter == null){
+            entities = unfilteredEntities;
+        } else {
+            for (Entity en : unfilteredEntities) {
+                if (filter.isValidEntity(en)) {
+                    entities.add(en);
+                }
             }
         }
 
@@ -40,9 +45,22 @@ public class DBEntityReader implements EntityReader {
     private void fillRefEntity(EntityType entityType, Entity entity) {
         if (entityType.getReferencesType() != null) {
             for (EntityType en : entityType.getReferencesType().getEntityType()) {
-                entity.getRefEntities().addAll(dao.readLinkedEntity(en, en.getDestinationField(), getFieldValue(entity, en.getSourceField())));
+                entity.getRefEntities().addAll(filterEntities(dao.readLinkedEntity(en, en.getDestinationField(), getFieldValue(entity, en.getSourceField()))));
             }
         }
+    }
+
+    private Collection<Entity> filterEntities(List<Entity> entities) {
+        if (filter == null){
+            return entities;
+        }
+        List<Entity> res = new ArrayList<Entity>();
+        for(Entity e : entities){
+            if (filter.isValidEntity(e)){
+                res.add(e);
+            }
+        }
+        return res;
     }
 
     private String getFieldValue(Entity entity, String destinationField) {
