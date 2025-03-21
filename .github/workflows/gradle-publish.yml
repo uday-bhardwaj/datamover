@@ -36,7 +36,7 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
-          server-id: github # Needed for Gradle/Maven publishing
+          server-id: ossrh # Needed for Gradle/Maven publishing
           settings-path: ${{ github.workspace }} # Location for settings.xml
 
       - name: Setup Gradle (8.13)
@@ -71,9 +71,6 @@ jobs:
           else
             ./gradlew publish
           fi
-        env:
-          USERNAME: ${{ github.actor }}
-          TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Create Git Tag (if master)
         if: github.ref == 'refs/heads/master'
