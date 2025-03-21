@@ -7,6 +7,10 @@
 
 name: Gradle Package
 
+env:
+  OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
+  OSSRH_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
+
 on:
   push:
     branches:
