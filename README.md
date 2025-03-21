@@ -3,6 +3,8 @@ DataMover
 
 DataMover is a simple framework for business data migration between applications
 
+This is the modified version of the original library https://github.com/Arrekusu/datamover by Arrekusu.
+
 ### Repositories
 
 #### Release version
