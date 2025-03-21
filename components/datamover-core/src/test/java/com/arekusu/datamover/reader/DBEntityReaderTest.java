@@ -7,15 +7,15 @@ import com.arekusu.datamover.model.jaxb.ObjectFactory;
 import org.junit.Before;
 import org.junit.Test;
 
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Unmarshaller;
+import jakarta.xml.bind.JAXBContext;
+import jakarta.xml.bind.JAXBException;
+import jakarta.xml.bind.Unmarshaller;
 import java.io.File;
 import java.net.URISyntaxException;
 import java.util.List;
 
 import static com.shazam.shazamcrest.matcher.Matchers.sameBeanAs;
-import static org.mockito.Matchers.argThat;
+import static org.mockito.ArgumentMatchers.argThat;
 import static org.mockito.Mockito.*;
 
 public class DBEntityReaderTest {
@@ -42,7 +42,9 @@ public class DBEntityReaderTest {
 
         List<Entity> entities = reader.readEntities(model);
 
-        verify(daoMock).readSimpleEntity(argThat(sameBeanAs(model.getDefinitionType().getEntityType())));
+        verify(daoMock).readSimpleEntity(argThat(entity ->
+                sameBeanAs(model.getDefinitionType().getEntityType()).matches(entity)
+        ));
         verifyNoMoreInteractions(daoMock);
     }
 }
