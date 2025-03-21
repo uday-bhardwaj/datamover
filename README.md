@@ -13,9 +13,9 @@ __Maven__
 
 ```xml
 <dependency>
-    <groupId>com.arekusu.datamover</groupId>
+    <groupId>com.udaybhardwaj.datamover</groupId>
     <artifactId>datamover-core</artifactId>
-    <version>0.1.0</version>
+    <version>0.3.0</version>
 </dependency>
 
 ```
@@ -23,7 +23,7 @@ __Maven__
 __Gradle__
 
 ```groovy
-compile "com.arekusu.datamover:datamover-core:0.1.0"
+compile "com.udaybhardwaj.datamover:datamover-core:0.3.0"
 ```
 
 #### Snapshot version
@@ -39,16 +39,16 @@ __Maven__
 </repositories>
 
 <dependency>
-    <groupId>com.arekusu.datamover</groupId>
+    <groupId>com.udaybhardwaj.datamover</groupId>
     <artifactId>datamover-core</artifactId>
-    <version>0.2.0-SNAPSHOT</version>
+    <version>0.3.0-SNAPSHOT</version>
 </dependency>
 ```
 
 __Gradle__
 
 ```groovy
-compile "com.arekusu.datamover:datamover-core:0.2.0-SNAPSHOT"
+compile "com.udaybhardwaj.datamover:datamover-core:0.3.0-SNAPSHOT"
 ```
 
 
