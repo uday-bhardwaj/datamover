@@ -24,13 +24,14 @@ distributions:
     type: "SINGLE_JAR"
     artifacts:
       - path: "build/libs/datamover-core-{{projectVersion}}.jar"
-    maven:
-      groupId: "com.github.uday-bhardwaj"
-      artifactId: "datamover-core"
-      # JReleaser automatically detects snapshots based on the version string
-      repositories:
-        - id: "ossrh"
-          url: "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"
-          snapshotUrl: "https://s01.oss.sonatype.org/content/repositories/snapshots/"
+    upload:
+      maven:
+        active: ALWAYS
+        url:
+          snapshot: "https://s01.oss.sonatype.org/content/repositories/snapshots/"
+          release: "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"
+        coordinates:
+          groupId: "io.github.uday-bhardwaj.datamover"
+          artifactId: "datamover-core"
       signing:
         active: "{{isRelease()}}"
