@@ -21,7 +21,7 @@ release:
 
 distributions:
   datamover-core:
-    type: "JAR"
+    type: "SINGLE_JAR"
     artifacts:
       - path: "build/libs/datamover-core-{{projectVersion}}.jar"
     maven:
