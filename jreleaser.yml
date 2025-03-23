@@ -1,9 +1,15 @@
 project:
   name: "DataMover"
   version: "0.3.0"  # Ensure this matches your project's versioning scheme
+  snapshot:
+    pattern: .*-SNAPSHOT
   description: "Simple framework for business data migration between applications."
   longDescription: "DataMover is a simple framework to migrate business data between applications."
   license: "MIT"
+  authors:
+    - Aleksandr Ananev
+    - Uday Bhardwaj
+  copyright: Copyright (c) 2014 Aleksandr Ananev
   links:
     homepage: "https://github.com/uday-bhardwaj/DataMover"
     documentation: "https://github.com/uday-bhardwaj/DataMover/wiki"
@@ -22,5 +28,7 @@ release:
 distributions:
   datamover-core:
     type: "SINGLE_JAR"
+    java:
+      groupId: "io.github.uday-bhardwaj.datamover"
     artifacts:
       - path: "build/libs/datamover-core-{{projectVersion}}.jar"
