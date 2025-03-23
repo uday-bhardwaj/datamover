@@ -45,16 +45,17 @@ jobs:
         with:
           gradle-version: '8.13'
 
+      - name: Build with Gradle
+        run: ./gradlew clean build
+
+      - name: Grant Execute Permission for Gradle
+        run: chmod +x gradlew
+
       - name: Setup JReleaser
         uses: jreleaser/release-action@v2
         with:
             version: '1.17.0'
 
-      - name: Grant Execute Permission for Gradle
-        run: chmod +x gradlew
-
-      - name: Build with Gradle
-        run: ./gradlew clean build
 
       - name: Publish Package
         run: jreleaser full-release
