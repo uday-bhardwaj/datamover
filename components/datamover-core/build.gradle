@@ -64,10 +64,6 @@ test {
 
 def isReleaseVersion = !version.endsWith("-SNAPSHOT")
 
-signing {
-    required { isReleaseVersion}
-}
-
 publishing {
     publications {
         myLibrary(MavenPublication) {
@@ -107,27 +103,27 @@ publishing {
                 }
             }
         }
-
-        repositories {
-            maven {
-                url = uri("https://oss.sonatype.org/service/local/staging/deploy/maven2/")
-                credentials {
-                    username = System.getenv("OSSRH_USERNAME") ?: ossrhUsername
-                    password = System.getenv("OSSRH_PASSWORD") ?: ossrhPassword
-                }
+    }
+    repositories {
+        maven {
+            url = uri("https://oss.sonatype.org/service/local/staging/deploy/maven2/")
+            credentials {
+                username = System.getenv("OSSRH_USERNAME") ?: ossrhUsername
+                password = System.getenv("OSSRH_PASSWORD") ?: ossrhPassword
             }
-            maven {
-                name = "snapshots"
-                url = uri("https://oss.sonatype.org/content/repositories/snapshots/")
-                credentials {
-                    username = System.getenv("OSSRH_USERNAME") ?: ossrhUsername
-                    password = System.getenv("OSSRH_PASSWORD") ?: ossrhPassword
-                }
+        }
+        maven {
+            name = "snapshots"
+            url = uri("https://oss.sonatype.org/content/repositories/snapshots/")
+            credentials {
+                username = System.getenv("OSSRH_USERNAME") ?: ossrhUsername
+                password = System.getenv("OSSRH_PASSWORD") ?: ossrhPassword
             }
         }
     }
 }
 signing {
+    required { isReleaseVersion }
     useInMemoryPgpKeys(System.getenv("GPG_PRIVATE_KEY"),System.getenv("GPG_PASSPHRASE"))
     sign publishing.publications.myLibrary
 }
