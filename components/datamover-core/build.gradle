@@ -65,12 +65,6 @@ test {
 
 def isReleaseVersion = !version.endsWith("-SNAPSHOT")
 
-signing {
-    required { isReleaseVersion }
-    useInMemoryPgpKeys(System.getenv("GPG_PRIVATE_KEY"),System.getenv("GPG_PASSPHRASE"))
-    sign publishing.publications.myLibrary
-}
-
 publishing {
     publications {
         myLibrary(MavenPublication) {
@@ -116,6 +110,12 @@ publishing {
             url = layout.buildDirectory.dir('staging-deploy')
         }
     }
+}
+
+signing {
+    required { isReleaseVersion }
+    useInMemoryPgpKeys(System.getenv("GPG_PRIVATE_KEY"),System.getenv("GPG_PASSPHRASE"))
+    sign publishing.publications.myLibrary
 }
 
 jreleaser {
