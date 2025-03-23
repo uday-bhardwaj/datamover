@@ -3,6 +3,8 @@ project:
   version: "0.3.0"  # Ensure this matches your project's versioning scheme
   snapshot:
     pattern: .*-SNAPSHOT
+  java:
+    groupId: "io.github.uday-bhardwaj.datamover"
   description: "Simple framework for business data migration between applications."
   longDescription: "DataMover is a simple framework to migrate business data between applications."
   license: "MIT"
