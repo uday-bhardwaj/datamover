@@ -3,6 +3,7 @@ plugins {
     id 'java'
     id 'maven-publish'
     id 'signing'
+    id 'org.jreleaser' version '1.17.0'
 }
 
 java {
@@ -64,6 +65,12 @@ test {
 
 def isReleaseVersion = !version.endsWith("-SNAPSHOT")
 
+signing {
+    required { isReleaseVersion }
+    useInMemoryPgpKeys(System.getenv("GPG_PRIVATE_KEY"),System.getenv("GPG_PASSPHRASE"))
+    sign publishing.publications.myLibrary
+}
+
 publishing {
     publications {
         myLibrary(MavenPublication) {
@@ -106,19 +113,14 @@ publishing {
     }
     repositories {
         maven {
-            name = "ossrh"
-            url = version.endsWith("-SNAPSHOT") ?
-                    uri("https://oss.sonatype.org/content/repositories/snapshots/") :
-                    uri("https://oss.sonatype.org/service/local/staging/deploy/maven2/")
-            credentials {
-                username = System.getenv("OSSRH_USERNAME") ?: ossrhUsername
-                password = System.getenv("OSSRH_PASSWORD") ?: ossrhPassword
-            }
+            url = layout.buildDirectory.dir('staging-deploy')
         }
     }
 }
-signing {
-    required { isReleaseVersion }
-    useInMemoryPgpKeys(System.getenv("GPG_PRIVATE_KEY"),System.getenv("GPG_PASSPHRASE"))
-    sign publishing.publications.myLibrary
+
+jreleaser {
+    signing {
+        active = 'ALWAYS'
+        armored = true
+    }
 }
