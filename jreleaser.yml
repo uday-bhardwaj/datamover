@@ -1,10 +1,9 @@
 project:
   name: "DataMover"
-  version: 0.3.0  # Or use `${project.version}` to sync with Gradle
-  snapshotPattern: "-SNAPSHOT"
+  version: "0.3.0"  # Ensure this matches your project's versioning scheme
   description: "Simple framework for business data migration between applications."
   longDescription: "DataMover is a simple framework to migrate business data between applications."
-  license: MIT
+  license: "MIT"
   links:
     homepage: "https://github.com/uday-bhardwaj/DataMover"
     documentation: "https://github.com/uday-bhardwaj/DataMover/wiki"
@@ -14,7 +13,7 @@ release:
   github:
     owner: "uday-bhardwaj"
     name: "DataMover"
-    tagName: "{{projectVersion}}"
+    tagName: "v{{projectVersion}}"
     releaseName: "DataMover {{projectVersion}}"
     overwrite: true
     draft: false
@@ -26,13 +25,12 @@ distributions:
     artifacts:
       - path: "build/libs/datamover-core-{{projectVersion}}.jar"
     maven:
-      active: ALWAYS
-      deployAt: OSSRH
-      url:
-        snapshot: "https://s01.oss.sonatype.org/content/repositories/snapshots/"
-        release: "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"
-      coordinates:
-        groupId: "com.github.uday-bhardwaj"
-        artifactId: "datamover-core"
+      groupId: "com.github.uday-bhardwaj"
+      artifactId: "datamover-core"
+      # JReleaser automatically detects snapshots based on the version string
+      repositories:
+        - id: "ossrh"
+          url: "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"
+          snapshotUrl: "https://s01.oss.sonatype.org/content/repositories/snapshots/"
       signing:
-        active: ALWAYS
+        active: "{{isRelease()}}"
