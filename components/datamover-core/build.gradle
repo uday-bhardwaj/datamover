@@ -106,15 +106,10 @@ publishing {
     }
     repositories {
         maven {
-            url = uri("https://oss.sonatype.org/service/local/staging/deploy/maven2/")
-            credentials {
-                username = System.getenv("OSSRH_USERNAME") ?: ossrhUsername
-                password = System.getenv("OSSRH_PASSWORD") ?: ossrhPassword
-            }
-        }
-        maven {
-            name = "snapshots"
-            url = uri("https://oss.sonatype.org/content/repositories/snapshots/")
+            name = "ossrh"
+            url = version.endsWith("-SNAPSHOT") ?
+                    uri("https://oss.sonatype.org/content/repositories/snapshots/") :
+                    uri("https://oss.sonatype.org/service/local/staging/deploy/maven2/")
             credentials {
                 username = System.getenv("OSSRH_USERNAME") ?: ossrhUsername
                 password = System.getenv("OSSRH_PASSWORD") ?: ossrhPassword
