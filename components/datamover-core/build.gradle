@@ -62,38 +62,17 @@ test {
     useJUnitPlatform()
 }
 
-artifacts {
-    archives javadocJar, sourcesJar
-}
+def isReleaseVersion = !version.endsWith("-SNAPSHOT")
 
 signing {
-    required { isReleaseVersion && gradle.taskGraph.hasTask("uploadArchives") }
-    sign configurations.archives
+    required { isReleaseVersion}
 }
 
 publishing {
     publications {
         myLibrary(MavenPublication) {
             artifactId= 'datamover-core'
-
-            repositories {
-                maven {
-                    url = uri("https://oss.sonatype.org/service/local/staging/deploy/maven2/")
-                    credentials {
-                        username = System.getenv("OSSRH_USERNAME") ?: ossrhUsername
-                        password = System.getenv("OSSRH_PASSWORD") ?: ossrhPassword
-                    }
-                }
-                maven {
-                    name = "snapshots"
-                    url = uri("https://oss.sonatype.org/content/repositories/snapshots/")
-                    credentials {
-                        username = System.getenv("OSSRH_USERNAME") ?: ossrhUsername
-                        password = System.getenv("OSSRH_PASSWORD") ?: ossrhPassword
-                    }
-                }
-            }
-
+            from components.java
             pom {
                 name = 'DataMover'
                 packaging = 'jar'
@@ -109,7 +88,8 @@ publishing {
                 licenses {
                     license {
                         name = 'MIT License'
-                        url = 'http://www.opensource.org/licenses/mit-license.php'
+                        url = 'https://raw.githubusercontent.com/uday-bhardwaj/datamover/master/LICENSE'
+                        distribution = 'repo'
                     }
                 }
 
@@ -127,9 +107,27 @@ publishing {
                 }
             }
         }
+
+        repositories {
+            maven {
+                url = uri("https://oss.sonatype.org/service/local/staging/deploy/maven2/")
+                credentials {
+                    username = System.getenv("OSSRH_USERNAME") ?: ossrhUsername
+                    password = System.getenv("OSSRH_PASSWORD") ?: ossrhPassword
+                }
+            }
+            maven {
+                name = "snapshots"
+                url = uri("https://oss.sonatype.org/content/repositories/snapshots/")
+                credentials {
+                    username = System.getenv("OSSRH_USERNAME") ?: ossrhUsername
+                    password = System.getenv("OSSRH_PASSWORD") ?: ossrhPassword
+                }
+            }
+        }
     }
 }
 signing {
     useInMemoryPgpKeys(System.getenv("GPG_PRIVATE_KEY"),System.getenv("GPG_PASSPHRASE"))
-    sign(publishing.publications.myLibrary)
+    sign publishing.publications.myLibrary
 }
