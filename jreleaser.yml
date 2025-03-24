@@ -39,4 +39,4 @@ distributions:
     java:
       groupId: "io.github.uday-bhardwaj.datamover"
     artifacts:
-      - path: "build/libs/datamover-core-{{projectVersion}}.jar"
+      - path: "/home/runner/work/datamover/datamover/components/datamover-core/build/libs/datamover-core-{{projectVersion}}.jar"
