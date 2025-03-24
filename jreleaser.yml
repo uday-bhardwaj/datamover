@@ -31,8 +31,7 @@ signing:
   active: ALWAYS
   verify: false
   passphrase: '{{JRELEASER_GPG_PASSPHRASE}}'
-  secretKey: |
-    '{{JRELEASER_GPG_SECRET_KEY}}'
+  secretKey: '{{JRELEASER_GPG_SECRET_KEY}}'
 
 distributions:
   datamover-core:
