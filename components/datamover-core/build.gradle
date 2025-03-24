@@ -114,7 +114,7 @@ publishing {
 
 signing {
     required { isReleaseVersion }
-    useInMemoryPgpKeys(System.getenv("GPG_PRIVATE_KEY"),System.getenv("GPG_PASSPHRASE"))
+    useInMemoryPgpKeys(System.getenv("JRELEASER_GPG_SECRET_KEY"),System.getenv("JRELEASER_GPG_PASSPHRASE"))
     sign publishing.publications.myLibrary
 }
 

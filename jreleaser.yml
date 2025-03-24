@@ -17,23 +17,6 @@ project:
     documentation: "https://github.com/uday-bhardwaj/DataMover/wiki"
     license: "https://raw.githubusercontent.com/uday-bhardwaj/datamover/master/LICENSE"
 
-release:
-  github:
-    owner: "uday-bhardwaj"
-    name: "DataMover"
-    tagName: "v{{projectVersion}}"
-    releaseName: "DataMover {{projectVersion}}"
-    overwrite: true
-    draft: false
-    sign: true
-
-signing:
-  active: ALWAYS
-  verify: false
-  passphrase: {{JRELEASER_GPG_PASSPHRASE}}
-  secretKey: |
-    {{JRELEASER_GPG_SECRET_KEY}}
-
 distributions:
   datamover-core:
     type: "SINGLE_JAR"
