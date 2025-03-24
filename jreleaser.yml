@@ -30,8 +30,9 @@ release:
 signing:
   active: ALWAYS
   verify: false
-  passphrase: {{ env.JRELEASER_GPG_PASSPHRASE }}
-  secretKey: {{ env.JRELEASER_GPG_SECRET_KEY }}
+  passphrase: {{ JRELEASER_GPG_PASSPHRASE }}
+  secretKey: |
+    {{ JRELEASER_GPG_SECRET_KEY }}
 
 distributions:
   datamover-core:
