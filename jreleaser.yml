@@ -1,6 +1,6 @@
 project:
   name: "DataMover"
-  version: "0.3.0"  # Ensure this matches your project's versioning scheme
+  version: "0.3.0-SNAPSHOT"  # Ensure this matches your project's versioning scheme
   snapshot:
     pattern: .*-SNAPSHOT
   java:
@@ -39,4 +39,4 @@ distributions:
     java:
       groupId: "io.github.uday-bhardwaj.datamover"
     artifacts:
-      - path: "datamover-core/build/libs/datamover-core-{{projectVersion}}.jar"
+      - path: "build/libs/datamover-core-{{projectVersion}}.jar"
