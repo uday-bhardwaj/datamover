@@ -122,5 +122,14 @@ jreleaser {
     signing {
         active = 'ALWAYS'
         armored = true
+        passphrase = System.getenv("JRELEASER_GPG_PASSPHRASE")
+        // The public GPG (ascii armored) used to sign files and commits.
+        // Required when mode = `MEMORY` || `FILE`.
+        //
+        publicKey = System.getenv("JRELEASER_GPG_PUBLIC_KEY")
+        // The private GPG (ascii armored) used to sign files and commits.
+        // Required when mode = `MEMORY` || `FILE`.
+        //
+        secretKey = System.getenv("JRELEASER_GPG_SECRET_KEY")
     }
 }
