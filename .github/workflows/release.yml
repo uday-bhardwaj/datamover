@@ -49,14 +49,19 @@ jobs:
 
       - name: Release to Maven Central
         env:
-          MAVEN_USERNAME: ${{ secrets.OSSRH_USERNAME }}
-          MAVEN_CENTRAL_TOKEN: ${{ secrets.OSSRH_PASSWORD }}
-          MAVEN_GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
-        run: |
-          export GPG_TTY=$(tty)
-          git config user.name "${{ github.event.head_commit.committer.name }}"
-          git config user.email "${{ github.event.head_commit.committer.email }}"
-          mvn -B --file pom.xml release:prepare release:perform
+          GRADLE_PUBLISH_KEY: ${{ secrets.JRELEASER_MAVENCENTRAL_USERNAME }}
+          GRADLE_PUBLISH_SECRET: ${{ secrets.JRELEASER_MAVENCENTRAL_TOKEN }}
+          run: |
+            ./gradlew -Pprofile=sbom -PreproducibleBuild=true publishPlugins publish -S
+            ./gradlew cleanupStagedRepository
+
+            - name: Upload deploy artifacts
+              uses: actions/upload-artifact@v4
+              with:
+                retention-days: 7
+                name: deploy
+                path: |
+                  build/repos/local/release/
 
 
       - name: Run JReleaser
