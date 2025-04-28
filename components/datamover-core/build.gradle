@@ -132,4 +132,15 @@ jreleaser {
         //
         secretKey = System.getenv("JRELEASER_GPG_SECRET_KEY")
     }
+    deploy {
+        maven {
+            mavenCentral {
+                sonatype {
+                    active = 'ALWAYS'
+                    url = 'https://central.sonatype.com/api/v1/publisher'
+                    stagingRepository('target/staging-deploy')
+                }
+            }
+        }
+    }
 }
