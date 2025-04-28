@@ -54,7 +54,7 @@ jobs:
           GRADLE_PUBLISH_SECRET: ${{ secrets.JRELEASER_MAVENCENTRAL_TOKEN }}
         run: |
             ./gradlew -Pprofile=sbom -PreproducibleBuild=true publish -S
-            ./gradlew cleanupStagedRepository
+            ./gradlew cleanBuild
 
       - name: Upload deploy artifacts
         uses: actions/upload-artifact@v4
