@@ -59,6 +59,16 @@ jobs:
           mvn -B --file pom.xml release:prepare release:perform
 
       # Create a release
+      - name: Setup Gradle (8.13)
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.13'
+
+      - name: Grant Execute Permission for Gradle
+        run: chmod +x gradlew
+
+      - name: Build with Gradle
+        run: ./gradlew clean build
 
       - name: Run JReleaser
         uses: jreleaser/release-action@v2
