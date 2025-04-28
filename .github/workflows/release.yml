@@ -45,7 +45,8 @@ jobs:
           gpg-passphrase: JRELEASER_GPG_PASSPHRASE
           cache: gradle
 
-
+      - name: Grant Execute Permission for Gradle
+        run: chmod +x gradlew
 
       - name: Release to Maven Central
         env:
