@@ -55,14 +55,13 @@ jobs:
             ./gradlew -Pprofile=sbom -PreproducibleBuild=true publishPlugins publish -S
             ./gradlew cleanupStagedRepository
 
-            - name: Upload deploy artifacts
-              uses: actions/upload-artifact@v4
-              with:
-                retention-days: 7
-                name: deploy
-                path: |
+      - name: Upload deploy artifacts
+        uses: actions/upload-artifact@v4
+        with:
+            retention-days: 7
+            name: deploy
+            path: |
                   build/repos/local/release/
-
 
       - name: Run JReleaser
         uses: jreleaser/release-action@v2
